@@ -1,18 +1,24 @@
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { IntegrationBadge } from '@/components/ui/integration-badge';
+import { INTEGRATIONS } from '@/config/app.config';
+
 
 export const HeroSection: React.FC = () => {
   return (
     <section className="w-full flex flex-col md:flex-row items-center justify-between px-10 py-20 bg-white relative overflow-hidden">
       <div className="flex-1 flex flex-col items-start justify-center max-w-xl z-10">
-        <div className="flex gap-2 mb-6">
-          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm font-semibold flex items-center gap-1">
-            <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><rect width="20" height="20" rx="4" fill="#4285F4" /><text x="50%" y="55%" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold" dy=".3em">G</text></svg>
-            Calendar
-          </span>
-          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm font-semibold flex items-center gap-1">
-            <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><rect width="20" height="20" rx="4" fill="#0078D4" /><text x="50%" y="55%" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold" dy=".3em">O</text></svg>
-            Outlook
-          </span>
+        <div className="flex gap-2 mb-6" role="list" aria-label="Supported calendar platforms">
+          <IntegrationBadge
+            name={INTEGRATIONS.googleCalendar.name}
+            icon={INTEGRATIONS.googleCalendar.icon}
+            color={INTEGRATIONS.googleCalendar.color}
+          />
+          <IntegrationBadge
+            name={INTEGRATIONS.outlook.name}
+            icon={INTEGRATIONS.outlook.icon}
+            color={INTEGRATIONS.outlook.color}
+          />
         </div>
         <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
           Get your time<br />back with AI.
