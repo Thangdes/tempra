@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { TESTIMONIALS_DATA } from '@/config/landing-data.config';
 
 export const SecondTestimonialSection: React.FC = () => {
-  // Return null if no testimonials available
   if (!TESTIMONIALS_DATA.grafana) {
     return null;
   }

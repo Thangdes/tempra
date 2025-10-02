@@ -48,7 +48,7 @@ export const Header: React.FC = () => {
             </Link>
 
             <nav 
-              className="hidden lg:flex items-center gap-8" 
+              className="hidden lg:flex items-center gap-2" 
               role="navigation" 
               aria-label="Main navigation"
             >
@@ -62,24 +62,25 @@ export const Header: React.FC = () => {
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-4">
               <Link
                 href={EXTERNAL_LINKS.login}
-                className="text-sm font-medium text-gray-700 hover:text-[#4ECCA3] transition-colors duration-200 px-6 py-2 rounded-lg border-2 border-black hover:border-[#4ECCA3]"
+                className="text-base font-bold text-gray-800 hover:text-[#0c7057] transition-all duration-200 px-6 py-2.5 rounded-lg border-2 border-gray-300 hover:border-[#0c7057] hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 tracking-wide"
               >
                 Log in
               </Link>
               
-              <button
-                className="rounded-lg px-6 py-2.5 bg-[#4ECCA3] text-white hover:bg-[#3dd490] transition-all duration-200 text-sm font-medium shadow-md hover:shadow-lg"
+              <Link
+                href={EXTERNAL_LINKS.signup}
+                className="rounded-lg px-6 py-2.5 bg-gradient-to-r from-[#0c7057] to-[#0f8c6a] text-white hover:from-[#0a5d4a] hover:to-[#0d7d5f] transition-all duration-200 text-base font-bold shadow-lg hover:shadow-xl hover:scale-105 tracking-wide"
               >
-                <Link href={EXTERNAL_LINKS.signup}>Try for free</Link>
-              </button>
+                Try for free
+              </Link>
             </div>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-[#4ECCA3] hover:bg-emerald-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#4ECCA3]/20"
+              className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-[#0c7057] hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0c7057]/20 border-2 border-transparent hover:border-emerald-200"
               aria-label="Toggle mobile menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -138,7 +139,7 @@ export const Header: React.FC = () => {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="block px-4 py-3 text-base font-medium text-gray-900 hover:bg-emerald-50 hover:text-[#4ECCA3] rounded-lg transition-colors duration-200"
+                    className="block px-4 py-3 text-base font-bold text-gray-800 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 hover:text-[#0c7057] rounded-lg transition-all duration-200 tracking-wide"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
@@ -151,21 +152,21 @@ export const Header: React.FC = () => {
               <div className="space-y-3">
                 <Link
                   href={EXTERNAL_LINKS.contactSales}
-                  className="block px-4 py-3 text-center text-sm font-medium text-gray-700 hover:text-[#4ECCA3] bg-gray-50 hover:bg-emerald-50 rounded-lg transition-colors duration-200"
+                  className="block px-4 py-3 text-center text-base font-bold text-gray-800 hover:text-[#0c7057] bg-gray-50 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 rounded-lg transition-all duration-200 tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact Sales
                 </Link>
                 <Link
                   href={EXTERNAL_LINKS.login}
-                  className="block px-4 py-3 text-center text-sm font-medium text-gray-700 hover:text-[#4ECCA3] bg-gray-50 hover:bg-emerald-50 rounded-lg transition-colors duration-200"
+                  className="block px-4 py-3 text-center text-base font-bold text-gray-800 hover:text-[#0c7057] bg-gray-50 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 rounded-lg transition-all duration-200 tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Log In
                 </Link>
                 <Link
                   href={EXTERNAL_LINKS.signup}
-                  className="block px-4 py-3 text-center text-sm font-semibold text-slate-900 bg-[#4ECCA3] hover:bg-[#3dd490] rounded-full transition-all duration-200 hover:shadow-lg"
+                  className="block px-4 py-3 text-center text-base font-bold text-white bg-gradient-to-r from-[#0c7057] to-[#0f8c6a] hover:from-[#0a5d4a] hover:to-[#0d7d5f] rounded-full transition-all duration-200 hover:shadow-lg hover:scale-105 tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Get Started

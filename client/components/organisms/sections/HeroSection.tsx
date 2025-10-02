@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FEATURES, INTEGRATIONS } from "@/config/app.config";
+import { FEATURES } from "@/config/app.config";
 import { LineChart, Line, BarChart, Bar, ResponsiveContainer } from "recharts";
 import Marquee from "react-fast-marquee";
 
@@ -78,7 +78,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600 dark:text-slate-400"
+          className="mb-12 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600 dark:text-slate-400"
         >
           <div className="flex items-center gap-2">
             <svg className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -98,6 +98,58 @@ export const HeroSection = () => {
             </svg>
             <span>Cancel anytime</span>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16 flex flex-col items-center gap-4"
+        >
+          <div className="flex items-center -space-x-3">
+            {[
+              { name: "Michael Rodriguez", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" },
+              { name: "Emily Watson", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" },
+              { name: "David Kim", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" },
+              { name: "Lisa Thompson", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face" },
+              { name: "James Wilson", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" }
+            ].map((user, index) => (
+              <motion.div
+                key={user.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+                className="relative"
+              >
+                <Image
+                  src={user.image}
+                  alt={user.name}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-full border-2 border-white shadow-lg dark:border-slate-700"
+                />
+                {index === 0 && (
+                  <div className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-green-500 border-2 border-white dark:border-slate-900" />
+                )}
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 1.2 }}
+              className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-dashed border-slate-300 bg-slate-100 text-sm font-medium text-slate-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-400"
+            >
+              +5K
+            </motion.div>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.3 }}
+            className="text-center text-sm text-slate-600 dark:text-slate-400"
+          >
+            <span className="font-semibold text-slate-900 dark:text-white">10,000+ professionals</span> trust Calento to manage their calendar
+          </motion.p>
         </motion.div>
       </div>
 
@@ -210,50 +262,104 @@ export const HeroSection = () => {
         transition={{ duration: 0.5, delay: 1, ease: [0.22, 1, 0.36, 1] }}
         className="mt-24"
       >
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            Trusted by industry leaders
+          </h3>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Over 40,000 organizations make time for what matters with Tempra
+            Join over 40,000 organizations worldwide who trust Calento to streamline their scheduling
           </p>
         </div>
-        
-        <div className="relative overflow-hidden">
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        className="relative py-16 overflow-hidden"
+      >
           <Marquee
             gradient={false}
-            speed={25}
+            speed={35}
             pauseOnHover={true}
-            className="py-12 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="py-8 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
-            {Object.values(INTEGRATIONS).map((integration, index) => (
+            {[
+              { name: 'Google', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg' },
+              { name: 'Microsoft', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
+              { name: 'Slack', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/slack/slack-original.svg' },
+              { name: 'Notion', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png' },
+              { name: 'GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg' },
+              { name: 'Stripe', logo: 'https://images.ctfassets.net/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg' },
+              { name: 'Vercel', logo: 'https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png' }
+            ].map((company, index) => (
               <div
-                key={`${integration.name}-${index}`}
-                className="mx-16 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                key={`${company.name}-${index}`}
+                className="mx-8 group cursor-pointer"
               >
-                <Image 
-                  src={integration.icon} 
-                  alt={integration.name}
-                  width={80}
-                  height={80}
-                  className="h-20 w-20 object-contain"
-                />
+                <div className="flex h-20 w-32 items-center justify-center rounded-2xl border border-slate-200/50 bg-white/80 backdrop-blur-sm transition-all duration-300 dark:border-slate-700/50 dark:bg-slate-800/80">
+                  <Image 
+                    src={company.logo} 
+                    alt={`${company.name} logo`}
+                    width={40}
+                    height={40}
+                    className="h-8 w-8 object-contain transition-all duration-300"
+                  />
+                </div>
               </div>
             ))}
             
-            {/* Duplicate the integrations to ensure smooth infinite scroll */}
-            {Object.values(INTEGRATIONS).map((integration, index) => (
+            {[
+              { name: 'Google', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg' },
+              { name: 'Microsoft', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
+              { name: 'Slack', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/slack/slack-original.svg' },
+              { name: 'Notion', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png' },
+              { name: 'Figma', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' },
+              { name: 'GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg' },
+              { name: 'Stripe', logo: 'https://images.ctfassets.net/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg' },
+              { name: 'Vercel', logo: 'https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png' }
+            ].map((company, index) => (
               <div
-                key={`${integration.name}-duplicate-${index}`}
-                className="mx-16 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                key={`${company.name}-duplicate-${index}`}
+                className="mx-8 group cursor-pointer"
               >
-                <Image 
-                  src={integration.icon} 
-                  alt={integration.name}
-                  width={80}
-                  height={80}
-                  className="h-20 w-20 object-contain"
-                />
+                <div className="flex h-20 w-32 items-center justify-center rounded-2xl border border-slate-200/50 bg-white/80 backdrop-blur-sm transition-all duration-300 dark:border-slate-700/50 dark:bg-slate-800/80">
+                  <Image 
+                    src={company.logo} 
+                    alt={`${company.name} logo`}
+                    width={40}
+                    height={40}
+                    className="h-8 w-8 object-contain transition-all duration-300"
+                  />
+                </div>
               </div>
             ))}
           </Marquee>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-16 mx-auto max-w-7xl px-6 md:px-8"
+      >
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-slate-900 dark:text-white">40K+</div>
+            <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Organizations</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-slate-900 dark:text-white">2M+</div>
+            <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Users worldwide</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-slate-900 dark:text-white">500M+</div>
+            <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Meetings scheduled</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-slate-900 dark:text-white">99.9%</div>
+            <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Uptime</div>
+          </div>
         </div>
       </motion.div>
     </section>

@@ -34,8 +34,10 @@ export function NavLink({
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         className={cn(
-          'cursor-pointer transition-colors hover:text-gray-900',
-          isActive ? 'text-gray-900 font-semibold' : 'text-gray-700',
+          'cursor-pointer transition-all duration-200 font-semibold text-base tracking-wide px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50',
+          isActive 
+            ? 'text-[#0c7057] bg-gradient-to-r from-emerald-50 to-green-50 font-bold shadow-sm' 
+            : 'text-gray-800 hover:text-[#0c7057] hover:font-bold',
           className
         )}
         aria-expanded={hasDropdown ? isOpen : undefined}
@@ -43,15 +45,15 @@ export function NavLink({
       >
         {label}
         {hasDropdown && (
-          <span
-            className="text-xs ml-1 inline-block transition-transform"
-            style={{
-              transform: isOpen ? 'rotate(180deg)' : 'rotate(0)',
-            }}
+          <svg 
+            className={`w-4 h-4 ml-1 inline-block transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
             aria-hidden="true"
           >
-            ▼
-          </span>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+          </svg>
         )}
       </Link>
       {/* Dropdown menu would go here */}

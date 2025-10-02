@@ -115,14 +115,14 @@ const socialPlatforms = [
 
 export const FooterLinks: React.FC = () => {
     return (
-        <div className="w-full bg-gradient-to-b from-white to-gray-50 py-16 px-4">
+        <div className="w-full bg-gradient-to-b from-slate-50 to-gray-100 py-16 px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Logo & Description Section */}
                 <div className="text-center mb-12">
                     <div className="flex justify-center mb-4">
                         <Logo size="lg" />
                     </div>
-                    <p className="text-gray-600 max-w-xl mx-auto mb-8">
+                    <p className="text-gray-700 max-w-xl mx-auto mb-8 font-medium">
                         AI-powered calendar assistant helping professionals reclaim time and boost productivity
                     </p>
                     
@@ -132,7 +132,7 @@ export const FooterLinks: React.FC = () => {
                             <a
                                 key={platform.name}
                                 href={platform.href}
-                                className={`p-3 bg-gray-100 text-gray-600 rounded-xl transition-all duration-300 transform hover:scale-110 hover:shadow-lg ${platform.color}`}
+                                className={`p-3 bg-white text-gray-700 rounded-xl transition-all duration-300 transform hover:scale-110 hover:shadow-lg border border-gray-200 hover:border-transparent ${platform.color}`}
                                 aria-label={platform.name}
                                 title={platform.name}
                             >
@@ -140,7 +140,7 @@ export const FooterLinks: React.FC = () => {
                             </a>
                         ))}
                     </div>
-                    <p className="text-sm text-gray-500">Follow us for updates and tips</p>
+                    <p className="text-sm text-gray-600 font-medium">Follow us for updates and tips</p>
                 </div>
 
                 {/* Desktop Footer Grid */}

@@ -29,19 +29,23 @@ export function Logo({ size = 'md', className }: LogoProps) {
         width={config.width} 
         height={config.height} 
         viewBox="0 0 369.89473684210526 57.79843733180461" 
-        className="transition-all duration-300 group-hover:scale-110 drop-shadow-sm"
+        className="transition-all duration-300 drop-shadow-sm"
         aria-label="Calento Logo"
         style={{
-          filter: 'drop-shadow(0 1px 2px rgba(12, 112, 87, 0.25))'
+          filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25))'
         }}
       >
         <defs>
           <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style={{ stopColor: '#000000', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#1a1a1a', stopOpacity: 1 }} />
+          </linearGradient>
+          <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" style={{ stopColor: '#0c7057', stopOpacity: 1 }} />
             <stop offset="100%" style={{ stopColor: '#0f8c6a', stopOpacity: 1 }} />
           </linearGradient>
         </defs>
-        <g transform="matrix(0.29092944504858287,0,0,0.29092944504858287,-2.355301723397257,-19.300977573466493)" fill="url(#logoGradient)">
+        <g transform="matrix(0.29092944504858287,0,0,0.29092944504858287,-2.355301723397257,-19.300977573466493)" fill="url(#iconGradient)">
           <path d="M42 112c-11,6 -20,2 -25,-2 -12,-7 -13,26 4,34 28,13 30,-8 48,27 19,35 73,89 136,89 32,1 64,-10 87,-28 -6,-3 -11,-6 -13,-14 8,3 19,7 27,0 14,-17 21,-39 18,-64 -8,-64 -71,-98 -127,-72 -56,26 -93,86 -105,67 -13,-19 0,-16 4,-43 4,-21 -18,-30 -19,-20 0,9 -10,14 -19,16 3,14 -2,23 -16,10zm250 77c3,0 6,3 6,6 0,3 -3,5 -6,5 -3,0 -5,-2 -5,-5 0,-3 2,-6 5,-6z" />
         </g>
         <g transform="matrix(4.189385422120977,0,0,4.189385422120977,108.80426797201412,-26.48668511814643)" fill="url(#logoGradient)">

@@ -38,7 +38,51 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.dribbble.com',
         pathname: '/**',
       },
-
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'logowik.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets-global.website-files.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.vercel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+        pathname: '/**',
+      }
     ],
   },
 
