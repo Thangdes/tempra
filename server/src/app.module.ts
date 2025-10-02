@@ -4,6 +4,7 @@ import { ConfigModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './modules/users/users.module';
 import { CommonModule } from './common/common.module';
+import { QueueModule } from './common/queue/queue.module';
 import { HealthModule } from './modules/health/health.module';
 import { EventModule } from './modules/event/event.module';
 import { CalendarModule } from './modules/calendar/calendar.module';
@@ -23,6 +24,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
     }),
     ConfigModule,
     CommonModule,
+    QueueModule, // BullMQ background job processing
     DatabaseModule,
     HealthModule,
     UsersModule,
