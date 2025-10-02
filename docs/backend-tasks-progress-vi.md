@@ -1,24 +1,20 @@
 # Tiến Độ Phát Triển Backend Calento.space
 
-**Cập nhật lần cuối**: 2025-10-01  
-**Dự án**: Calento.space - Smart Calendar Assistant  
-**Phiên bản**: 1.0.0
-
 ---
 
 ## 📊 Tiến Độ Tổng Thể: 58% Hoàn Thành
 
-| Danh Mục                              | Tiến Độ | Trạng Thái          |
-| ------------------------------------- | ------- | ------------------- |
-| **Hạ Tầng Cốt Lõi**            | 95%     | 🟢 Gần Hoàn Thành   |
-| **Xác Thực & Người Dùng**       | 100%    | ✅ Hoàn Thành       |
-| **Quản Lý Sự Kiện**             | 100%    | ✅ Hoàn Thành       |
-| **Đồng Bộ Google Calendar**     | 90%     | 🟢 Gần Hoàn Thành   |
-| **Tích Hợp Slack**              | 0%      | 🔴 Chưa Bắt Đầu     |
-| **Thông Báo Email**             | 0%      | 🔴 Chưa Bắt Đầu     |
-| **Hệ Thống Khả Dụng**           | 0%      | 🔴 Chưa Bắt Đầu     |
-| **Hệ Thống Đặt Lịch**           | 0%      | 🔴 Chưa Bắt Đầu     |
-| **Kiểm Thử & Triển Khai**       | 10%     | 🔴 Chưa Bắt Đầu     |
+| Danh Mục                            | Tiến Độ | Trạng Thái         |
+| ------------------------------------ | ---------- | -------------------- |
+| **Hạ Tầng Cốt Lõi**        | 95%        | 🟢 Gần Hoàn Thành |
+| **Xác Thực & Người Dùng** | 100%       | ✅ Hoàn Thành      |
+| **Quản Lý Sự Kiện**        | 100%       | ✅ Hoàn Thành      |
+| **Đồng Bộ Google Calendar** | 90%        | 🟢 Gần Hoàn Thành |
+| **Tích Hợp Slack**           | 0%         | 🔴 Chưa Bắt Đầu  |
+| **Thông Báo Email**          | 0%         | 🔴 Chưa Bắt Đầu  |
+| **Hệ Thống Khả Dụng**      | 0%         | 🔴 Chưa Bắt Đầu  |
+| **Hệ Thống Đặt Lịch**     | 0%         | 🔴 Chưa Bắt Đầu  |
+| **Kiểm Thử & Triển Khai**   | 10%        | 🔴 Chưa Bắt Đầu  |
 
 ---
 
@@ -50,6 +46,7 @@
 ### 3. ✅ Module Quản Lý Sự Kiện (100%)
 
 #### **Tính Năng Cốt Lõi:**
+
 - [X] Entity & schema cho Event
 - [X] CRUD endpoints cho Event
 - [X] Validation cho Event (DTOs)
@@ -61,6 +58,7 @@
 - [X] Hỗ trợ sự kiện cả ngày
 
 #### **Tìm Kiếm & Lọc:**
+
 - [X] Tìm kiếm event theo title/description
 - [X] Tìm kiếm với filter date range
 - [X] Phân trang event (PaginationService)
@@ -68,6 +66,7 @@
 - [X] Sắp xếp theo nhiều trường (start_time, end_time, title, created_at)
 
 #### **Sự Kiện Lặp Lại (RRULE):**
+
 - [X] Lưu trữ recurrence rule (định dạng RRULE)
 - [X] Triển khai RecurringEventsService
 - [X] Parse RRULE (tuân thủ RFC 5545)
@@ -83,6 +82,7 @@
 ### 4. ✅ Tích Hợp Google Calendar (90%)
 
 #### **Đã Hoàn Thành:**
+
 - [X] Thiết lập Google OAuth2
 - [X] Google Calendar API service
 - [X] Quản lý token
@@ -98,6 +98,7 @@
 - [X] Hệ thống sync type-safe
 
 #### **Webhook Real-time (MỚI - 100%):**
+
 - [X] WebhookModule implementation
 - [X] Webhook channel repository
 - [X] Webhook service (watch/stop/handle)
@@ -112,7 +113,8 @@
 - [X] Security validation (Google headers)
 
 #### **Đang Tiếp Tục:**
-- [ ] 🔄 Tối ưu hóa batch sync
+
+- [X] 🔄 Tối ưu hóa batch sync
 - [ ] 🔄 Khôi phục lỗi sync
 - [ ] 🔄 Cron job auto-renewal cho webhook
 
@@ -138,8 +140,7 @@
 - [X] Types tập trung (sync.types.ts, ExpandedEvent interface)
 - [X] Dependency injection đúng chuẩn
 - [X] Tách biệt service layer
-- [X] Repository pattern (BaseRepository, UserOwnedRepository)
-- [X] Phân cấp exception
+- [X] Repository pattern (BaseRepository, UserOwnedRepository)Phân cấp exception
 - [X] Logging best practices
 - [X] Type safety (enums vs strings)
 - [X] Áp dụng nguyên tắc SOLID
@@ -153,8 +154,7 @@
 
 ### Google Calendar Sync - Cải Tiến
 
-**Độ Ưu Tiên**: Trung Bình  
-**Ước Tính**: 2-3 ngày
+**Độ Ưu Tiên**: Trung Bình**Ước Tính**: 2-3 ngày
 
 - [X] Triển khai webhook notifications từ Google ✅
 - [ ] Thêm retry logic cho syncs thất bại
@@ -169,8 +169,7 @@
 
 ### 1. Quản Lý Sự Kiện - Tính Năng Nâng Cao
 
-**Độ Ưu Tiên**: Trung Bình  
-**Ước Tính**: 2-3 ngày
+**Độ Ưu Tiên**: Trung Bình**Ước Tính**: 2-3 ngày
 
 - [X] Tìm kiếm event theo title, date, location ✅
 - [X] Lọc event (date range) ✅
@@ -186,7 +185,7 @@
 
 ### 2. Hệ Thống Quản Lý Khả Dụng
 
-**Độ Ưu Tiên**: Cao  
+**Độ Ưu Tiên**: Cao
 **Ước Tính**: 5-7 ngày
 
 **Database Schema**:
@@ -229,7 +228,7 @@ CREATE TABLE availability_exceptions (
 
 ### 3. Hệ Thống Đặt Lịch
 
-**Độ Ưu Tiên**: Cao  
+**Độ Ưu Tiên**: Cao
 **Ước Tính**: 7-10 ngày
 
 **Database Schema**:
@@ -281,7 +280,7 @@ CREATE TABLE bookings (
 
 ### 4. Tích Hợp Slack
 
-**Độ Ưu Tiên**: Trung Bình  
+**Độ Ưu Tiên**: Trung Bình
 **Ước Tính**: 4-5 ngày
 
 **Database Schema**:
@@ -322,7 +321,7 @@ CREATE TABLE slack_notifications (
 
 ### 5. Thông Báo Email
 
-**Độ Ưu Tiên**: Trung Bình  
+**Độ Ưu Tiên**: Trung Bình
 **Ước Tính**: 3-4 ngày
 
 **Database Schema**:
@@ -367,7 +366,7 @@ CREATE TABLE email_queue (
 
 ### 6. Webhooks & Cập Nhật Real-time
 
-**Độ Ưu Tiên**: Thấp  
+**Độ Ưu Tiên**: Thấp
 **Ước Tính**: 2-3 ngày (đã có phần Google Calendar webhook)
 
 **Database Schema** (cho user webhooks):
@@ -409,8 +408,7 @@ CREATE TABLE webhook_deliveries (
 
 ### 7. Kiểm Thử
 
-**Độ Ưu Tiên**: Cao  
-**Ước Tính**: 7-10 ngày
+**Độ Ưu Tiên**: Cao**Ước Tính**: 7-10 ngày
 
 - [ ] Unit tests cho services
 - [ ] Integration tests cho APIs
@@ -423,8 +421,7 @@ CREATE TABLE webhook_deliveries (
 
 ### 8. Tài Liệu API
 
-**Độ Ưu Tiên**: Trung Bình  
-**Ước Tính**: 2-3 ngày
+**Độ Ưu Tiên**: Trung Bình**Ước Tính**: 2-3 ngày
 
 - [X] Thiết lập Swagger/OpenAPI (Basic)
 - [ ] Tài liệu endpoint đầy đủ
@@ -437,8 +434,7 @@ CREATE TABLE webhook_deliveries (
 
 ### 9. Bảo Mật & Performance
 
-**Độ Ưu Tiên**: Cao  
-**Ước Tính**: 4-5 ngày
+**Độ Ưu Tiên**: Cao**Ước Tính**: 4-5 ngày
 
 - [ ] Rate limiting
 - [ ] Quản lý API key
@@ -453,8 +449,7 @@ CREATE TABLE webhook_deliveries (
 
 ### 10. Triển Khai & DevOps
 
-**Độ Ưu Tiên**: Cao  
-**Ước Tính**: 5-7 ngày
+**Độ Ưu Tiên**: Cao**Ước Tính**: 5-7 ngày
 
 - [ ] Docker containerization
 - [ ] Docker Compose cho local dev
@@ -474,17 +469,18 @@ CREATE TABLE webhook_deliveries (
 ### Độ Ưu Tiên Cao
 
 1. **Webhook Auto-renewal** (2 ngày)
+
    - Triển khai cron job cho auto-renewal
    - Cleanup expired channels
    - Monitoring webhook health
-
 2. **Hệ Thống Availability** (7 ngày)
+
    - Database schema
    - CRUD endpoints
    - Logic kiểm tra availability
    - Tích hợp với events
-
 3. **Thiết Lập Testing** (3 ngày)
+
    - Cấu hình Jest
    - Unit tests đầu tiên cho EventService
    - Thiết lập integration test
@@ -543,18 +539,19 @@ CREATE TABLE webhook_deliveries (
 ## 🐛 Các Vấn Đề Đã Biết
 
 1. **Đồng Bộ Google Calendar**
+
    - [ ] Xử lý rate limiting từ Google API
    - [ ] Xử lý network errors tốt hơn
    - [ ] Sync calendars lớn (1000+ events)
    - [ ] Auto-renewal cho webhook channels
-
 2. **Quản Lý Event**
+
    - [X] Recurring events đã triển khai đầy đủ ✅
    - [ ] Xử lý timezone cần cải thiện
    - [ ] Cần tính năng sửa recurring event series (single vs all)
    - [ ] Cần hỗ trợ EXDATE cho exception dates
-
 3. **Performance**
+
    - [X] Đã thêm pagination cho tất cả event queries ✅
    - [X] Đã tối ưu recurring event expansion ✅
    - [ ] Cần thêm indexes cho cột recurrence_rule
@@ -711,5 +708,5 @@ CREATE TABLE webhook_deliveries (
 - ✅ Multi-calendar support
 - ✅ Channel expiration tracking
 
-**Tiến độ Google Calendar Sync**: 80% → 90%  
+**Tiến độ Google Calendar Sync**: 80% → 90%
 **Tiến độ tổng thể**: 52% → 58%

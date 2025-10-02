@@ -64,4 +64,5 @@ export class EventService {
     ): Promise<PaginatedResult<Event>> {
         return this.eventRepository.expandRecurringEvents(userId, startDate, endDate, maxOccurrences, options);
     }
+
 }
