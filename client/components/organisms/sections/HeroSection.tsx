@@ -217,22 +217,11 @@ export const HeroSection = () => {
         </div>
         
         <div className="relative overflow-hidden">
-          <style jsx>{`
-            .marquee-container::-webkit-scrollbar {
-              display: none;
-            }
-            .marquee-container {
-              -ms-overflow-style: none;
-              scrollbar-width: none;
-            }
-          `}</style>
           <Marquee
-            gradient={true}
-            gradientColor="rgb(248 250 252)"
-            gradientWidth={120}
+            gradient={false}
             speed={25}
             pauseOnHover={true}
-            className="py-12 overflow-hidden marquee-container"
+            className="py-12 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
             {Object.values(INTEGRATIONS).map((integration, index) => (
               <div

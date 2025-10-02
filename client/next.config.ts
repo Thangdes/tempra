@@ -20,6 +20,16 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'logo.dev',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.logo.dev',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn.prod.website-files.com',
         pathname: '/**',
       },
@@ -28,6 +38,7 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.dribbble.com',
         pathname: '/**',
       },
+
     ],
   },
 

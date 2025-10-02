@@ -71,7 +71,7 @@ export const Header: React.FC = () => {
               </Link>
               
               <button
-                className="rounded-lg px-6 py-2.5 bg-[#4ECCA3] text-slate-900 hover:bg-[#3dd490] transition-all duration-200 text-sm font-medium shadow-md hover:shadow-lg"
+                className="rounded-lg px-6 py-2.5 bg-[#4ECCA3] text-white hover:bg-[#3dd490] transition-all duration-200 text-sm font-medium shadow-md hover:shadow-lg"
               >
                 <Link href={EXTERNAL_LINKS.signup}>Try for free</Link>
               </button>
@@ -119,25 +119,20 @@ export const Header: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 z-40 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          {/* Backdrop */}
           <div 
             className="fixed inset-0 bg-black/20 backdrop-blur-sm"
             aria-hidden="true"
           />
-
-          {/* Mobile Menu Panel */}
           <div
             className="fixed top-16 left-0 right-0 bottom-0 bg-white border-t border-gray-200 overflow-y-auto animate-in slide-in-from-top-4 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="px-4 py-6 space-y-6">
-              {/* Mobile Navigation */}
               <nav className="space-y-1" aria-label="Mobile navigation">
                 {NAVIGATION_LINKS.map((link) => (
                   <Link
@@ -151,10 +146,8 @@ export const Header: React.FC = () => {
                 ))}
               </nav>
 
-              {/* Divider */}
               <div className="border-t border-gray-200" />
 
-              {/* Mobile CTA Buttons */}
               <div className="space-y-3">
                 <Link
                   href={EXTERNAL_LINKS.contactSales}
