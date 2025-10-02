@@ -1,5 +1,4 @@
 'use client';
-
 import { cn } from '@/lib/utils';
 import { NavigationLinkProps } from '@/types/components.types';
 import Link from 'next/link';
@@ -10,6 +9,7 @@ export function NavLink({
   href,
   hasDropdown = false,
   isActive = false,
+  className,
 }: NavigationLinkProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +35,8 @@ export function NavLink({
         onKeyDown={handleKeyDown}
         className={cn(
           'cursor-pointer transition-colors hover:text-gray-900',
-          isActive ? 'text-gray-900 font-semibold' : 'text-gray-700'
+          isActive ? 'text-gray-900 font-semibold' : 'text-gray-700',
+          className
         )}
         aria-expanded={hasDropdown ? isOpen : undefined}
         aria-haspopup={hasDropdown ? 'true' : undefined}

@@ -19,20 +19,20 @@ export const OrganizationSchema: FC = () => {
   const organizationData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Tempra',
+    name: 'Calento',
     description: 'AI Calendar Assistant - Get your time back with AI',
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     foundingDate: '2024',
     sameAs: [
-      'https://twitter.com/tempra',
-      'https://linkedin.com/company/tempra',
-      'https://github.com/tempra',
+      'https://twitter.com/calento',
+      'https://linkedin.com/company/calento',
+      'https://github.com/calento',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      email: 'support@tempra.com',
+      email: 'support@calento.com',
       availableLanguage: ['English', 'Vietnamese'],
     },
   };
@@ -46,7 +46,7 @@ export const WebSiteSchema: FC = () => {
   const websiteData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Tempra',
+    name: 'Calento',
     url: baseUrl,
     potentialAction: {
       '@type': 'SearchAction',
@@ -67,7 +67,7 @@ export const SoftwareApplicationSchema: FC = () => {
   const softwareData = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'Tempra',
+    name: 'Calento',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web, iOS, Android',
     offers: {
@@ -85,7 +85,7 @@ export const SoftwareApplicationSchema: FC = () => {
     },
     author: {
       '@type': 'Organization',
-      name: 'Tempra Team',
+      name: 'Calento Team',
     },
     description: 'AI-powered calendar assistant for scheduling and productivity',
     screenshot: `${baseUrl}/og-image.png`,
@@ -155,7 +155,7 @@ export const ArticleSchema: FC<ArticleSchemaProps> = ({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Tempra',
+      name: 'Calento',
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/logo.png`,

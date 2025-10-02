@@ -1,17 +1,17 @@
 export const APP_CONFIG = {
-  name: 'Tempra',
+  name: 'Calento',
   tagline: 'Your AI-Powered Calendar Assistant',
   description: 'The smartest way to manage your time. Automatically schedule meetings, sync calendars, and get AI-powered suggestions to maximize your productivity.',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   support: {
-    email: 'support@tempra.com',
-    salesEmail: 'sales@tempra.com',
+    email: 'support@calento.com',
+    salesEmail: 'sales@calento.com',
   },
 } as const;
 
 export const BRAND_COLORS = {
-  primary: '#7c3aed',
-  primaryLight: '#f3e8ff',
+  primary: '#4ECCA3',
+  primaryLight: '#e0f7f0',
   secondary: '#10b981',
   secondaryDark: '#059669',
   accent: '#3b82f6',
@@ -32,8 +32,8 @@ export const NAVIGATION_LINKS = [
 ] as const;
 
 export const EXTERNAL_LINKS = {
-  signup: 'https://app.tempra.ai/signup',
-  login: 'https://app.tempra.ai/login',
+  signup: 'https://app.calento.ai/signup',
+  login: 'https://app.calento.ai/login',
   contactSales: '/contact-sales',
   documentation: '/docs',
   support: '/support',

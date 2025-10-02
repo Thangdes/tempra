@@ -64,7 +64,7 @@ export const CalendarPreview: React.FC = () => {
       {/* Events list */}
       <div className="space-y-3">
         <div className="flex items-center justify-between mb-2">
-          <h4 className="text-sm font-semibold text-gray-700">Today's Schedule</h4>
+          <h4 className="text-sm font-semibold text-gray-700">Today&apos;s Schedule</h4>
           <span className="text-xs text-gray-500">{events.length} events</span>
         </div>
         {events.map((event) => (

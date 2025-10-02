@@ -39,6 +39,7 @@ export interface NavigationLinkProps {
   href: string;
   hasDropdown?: boolean;
   isActive?: boolean;
+  className?: string;
 }
 export interface IntegrationBadgeProps {
   name: string;

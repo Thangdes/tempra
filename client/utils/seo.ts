@@ -20,7 +20,7 @@ export function generateSEO({
   keywords = [],
 }: GenerateSEOProps): Metadata {
   const url = `${baseUrl}${path}`;
-  const fullTitle = title.includes('Tempra') ? title : `${title} | Tempra`;
+  const fullTitle = title.includes('Calento') ? title : `${title} | Calento`;
 
   return {
     title: fullTitle,
@@ -33,7 +33,7 @@ export function generateSEO({
       title: fullTitle,
       description,
       url,
-      siteName: 'Tempra',
+      siteName: 'Calento',
       images: [
         {
           url: image.startsWith('http') ? image : `${baseUrl}${image}`,
@@ -50,7 +50,7 @@ export function generateSEO({
       title: fullTitle,
       description,
       images: [image.startsWith('http') ? image : `${baseUrl}${image}`],
-      creator: '@tempra',
+      creator: '@calento',
     },
     robots: noIndex
       ? {
@@ -96,7 +96,7 @@ export function generateBlogSEO({
   const url = `${baseUrl}/blog/${slug}`;
 
   return {
-    title: `${title} | Tempra Blog`,
+    title: `${title} | Calento Blog`,
     description,
     keywords: tags,
     alternates: {
@@ -107,7 +107,7 @@ export function generateBlogSEO({
       title,
       description,
       url,
-      siteName: 'Tempra',
+      siteName: 'Calento',
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt || publishedAt,
@@ -127,7 +127,7 @@ export function generateBlogSEO({
       title,
       description,
       images: [image.startsWith('http') ? image : `${baseUrl}${image}`],
-      creator: '@tempra',
+      creator: '@calento',
     },
     robots: {
       index: true,

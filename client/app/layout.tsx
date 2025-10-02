@@ -25,14 +25,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Tempra - AI Calendar Assistant',
-    default: 'Tempra - AI Calendar Assistant',
+    template: '%s | Calento - AI Calendar Assistant',
+    default: 'Calento - AI Calendar Assistant',
   },
   description: 'Get your time back with AI. The #1 AI calendar app for individuals, teams, and organizations.',
   keywords: ['AI calendar', 'scheduling', 'productivity', 'time management', 'Google Calendar', 'Outlook'],
-  authors: [{ name: 'Tempra Team' }],
-  creator: 'Tempra',
-  publisher: 'Tempra',
+  authors: [{ name: 'Calento Team' }],
+  creator: 'Calento',
+  publisher: 'Calento',
   formatDetection: {
     email: false,
     address: false,
@@ -46,24 +46,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    siteName: 'Tempra',
-    title: 'Tempra - AI Calendar Assistant',
+    siteName: 'Calento',
+    title: 'Calento - AI Calendar Assistant',
     description: 'Get your time back with AI',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Tempra - AI Calendar Assistant',
+        alt: 'Calento - AI Calendar Assistant',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tempra - AI Calendar Assistant',
+    title: 'Calento - AI Calendar Assistant',
     description: 'Get your time back with AI',
     images: ['/og-image.png'],
-    creator: '@tempra',
+    creator: '@calento',
   },
   robots: {
     index: true,
@@ -110,7 +110,7 @@ export default function RootLayout({
         <WebSiteSchema />
         <SoftwareApplicationSchema />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#FDF9F7]`} suppressHydrationWarning>
         <ServiceWorkerRegister />
         <WebVitals />
         <QueryProvider>

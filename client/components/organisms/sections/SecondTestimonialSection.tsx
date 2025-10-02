@@ -1,7 +1,13 @@
 import React from 'react';
+import Image from 'next/image';
 import { TESTIMONIALS_DATA } from '@/config/landing-data.config';
 
 export const SecondTestimonialSection: React.FC = () => {
+  // Return null if no testimonials available
+  if (!TESTIMONIALS_DATA.grafana) {
+    return null;
+  }
+
   const testimonial = TESTIMONIALS_DATA.grafana;
 
   return (
@@ -9,11 +15,12 @@ export const SecondTestimonialSection: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2 flex justify-center">
-            <img
+            <Image
               src={testimonial.illustration}
               alt={`${testimonial.company} Testimonial Illustration`}
+              width={600}
+              height={400}
               className="rounded-2xl shadow-lg max-w-full h-auto"
-              loading="lazy"
             />
           </div>
           <div className="lg:w-1/2">
@@ -24,11 +31,12 @@ export const SecondTestimonialSection: React.FC = () => {
               <div className="font-semibold">{testimonial.author}</div>
               <div className="text-lg">{testimonial.title}, {testimonial.company}</div>
             </div>
-            <img
+            <Image
               src={testimonial.companyLogo}
               alt={`${testimonial.company} Logo`}
+              width={128}
+              height={40}
               className="mt-6 w-32"
-              loading="lazy"
             />
           </div>
         </div>

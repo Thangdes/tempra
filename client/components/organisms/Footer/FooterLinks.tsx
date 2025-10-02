@@ -1,4 +1,5 @@
 import { FooterSection } from './FooterSection';
+import { Logo } from '@/components/ui/logo';
 
 interface FooterSectionData {
     title: string;
@@ -8,40 +9,40 @@ interface FooterSectionData {
 
 const footerSections: FooterSectionData[] = [
     {
-        title: "Products",
+        title: "Features",
         links: [
-            "Focus Time", "Habits", "Tasks", "Smart Meetings",
-            "Scheduling Links", "Calendar Sync", "Buffer Time",
-            "Working Hours", "Planner", "Time Tracking", "People Analytics", "Use Cases"
+            "AI Scheduling", "Calendar Sync", "Smart Meetings", "Focus Time",
+            "Time Blocking", "Meeting Analytics", "Productivity Insights",
+            "Calendar Integration", "Automated Scheduling", "Team Coordination"
         ],
         isWide: true
     },
     {
-        title: "Teams",
+        title: "Use Cases",
         links: [
-            "Product Teams", "Engineering Teams", "Sales Teams",
-            "Marketing Teams", "HR Teams", "Finance Teams", "EAs & Admin Teams"
+            "Remote Teams", "Executives", "Sales Teams", "Marketing Teams",
+            "Engineering Teams", "Consultants", "Freelancers"
         ]
     },
     {
         title: "Pricing",
         links: [
-            "Pricing & plans", "Student Discount", "Nonprofit Discount",
-            "Startup Discount", "Competitor Discount"
+            "Pricing Plans", "Free Plan", "Pro Plan", "Team Plan",
+            "Enterprise", "Student Discount"
         ]
     },
     {
         title: "Compare",
         links: [
-            "Reclaim vs. Clockwise", "Reclaim vs. Motion", "Reclaim vs. Calendly",
-            "Reclaim vs. Google Calendar", "Reclaim vs. Outlook Calendar"
+            "Calento vs. Calendly", "Calento vs. Motion", "Calento vs. Clockwise",
+            "Calento vs. Google Calendar", "Calento vs. Outlook"
         ]
     },
     {
         title: "Integrations",
         links: [
-            "Slack", "Zoom", "Google Tasks", "Todoist", "Asana",
-            "Jira", "ClickUp", "Linear", "Raycast"
+            "Google Calendar", "Outlook", "Slack", "Zoom", "Microsoft Teams",
+            "Notion", "Trello", "Asana", "Linear"
         ]
     },
     {
@@ -61,23 +62,31 @@ const footerSections: FooterSectionData[] = [
 
 export const FooterLinks: React.FC = () => {
     return (
-        <div className="w-full bg-white py-16 px-4 border-t border-gray-200">
+        <div className="w-full bg-gradient-to-b from-white to-gray-50 py-20 px-4 border-t border-gray-100">
             <div className="max-w-7xl mx-auto">
+                {/* Logo Section */}
+                <div className="text-center mb-16">
+                    <div className="flex justify-center mb-6">
+                        <Logo size="lg" />
+                    </div>
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                        AI-powered calendar assistant that helps you reclaim your time and boost productivity
+                    </p>
+                </div>
                 {/* Desktop Footer Grid */}
-                <div className="hidden lg:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8">
+                <div className="hidden lg:grid grid-cols-7 gap-8 mb-12">
                     {footerSections.map((section) => (
                         <FooterSection
                             key={section.title}
                             title={section.title}
                             links={section.links}
-                            isWide={section.isWide}
                         />
                     ))}
                 </div>
 
                 {/* Mobile Footer */}
-                <div className="lg:hidden space-y-8">
-                    <div className="grid grid-cols-2 gap-8">
+                <div className="lg:hidden space-y-8 mb-12">
+                    <div className="grid grid-cols-2 gap-6">
                         {footerSections.slice(0, 4).map((section) => (
                             <FooterSection
                                 key={section.title}
@@ -86,7 +95,7 @@ export const FooterLinks: React.FC = () => {
                             />
                         ))}
                     </div>
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid grid-cols-2 gap-6">
                         {footerSections.slice(4).map((section) => (
                             <FooterSection
                                 key={section.title}

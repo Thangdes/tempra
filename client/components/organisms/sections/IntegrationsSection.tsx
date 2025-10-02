@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { INTEGRATIONS_DATA } from '@/config/landing-data.config';
 import type { IntegrationItem } from '@/types/landing.types';
 
@@ -18,15 +19,16 @@ export const IntegrationsSection: React.FC = () => {
             <Link
               key={integration.id}
               href={integration.href}
-              className={`bg-white border border-gray-200 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:border-blue-200 ${integration.comingSoon ? 'opacity-60 pointer-events-none' : ''}`}
+              className={`bg-white border border-gray-200 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:border-[#4ECCA3] ${integration.comingSoon ? 'opacity-60 pointer-events-none' : ''}`}
               aria-label={`${integration.name} integration: ${integration.description}`}
               {...(integration.comingSoon && { 'aria-disabled': 'true' as const })}
             >
-              <img
+              <Image
                 src={integration.logo}
                 alt={`${integration.name} logo`}
+                width={48}
+                height={48}
                 className="w-12 h-12 mx-auto mb-4"
-                loading="lazy"
               />
               <h3 className="font-semibold text-gray-900 mb-2">{integration.name}</h3>
               <p className="text-gray-600 text-sm">{integration.description}</p>

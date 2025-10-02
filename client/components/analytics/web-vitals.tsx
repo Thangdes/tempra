@@ -18,8 +18,9 @@ export function WebVitals() {
     // Send to analytics in production
     if (process.env.NODE_ENV === 'production') {
       // Example: Send to Google Analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', metric.name, {
+      if (typeof window !== 'undefined' && 'gtag' in window) {
+        const gtag = (window as unknown as { gtag: (...args: unknown[]) => void }).gtag;
+        gtag('event', metric.name, {
           value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
           event_category: 'Web Vitals',
           event_label: metric.id,
@@ -38,9 +39,9 @@ export function WebVitals() {
 /**
  * Send metrics to custom analytics endpoint
  */
-async function sendToAnalytics(metric: any) {
+async function sendToAnalytics(metric: { name: string; value: number; rating: string; delta: number; id: string; navigationType: string }) {
   try {
-    const body = JSON.stringify({
+    JSON.stringify({
       name: metric.name,
       value: metric.value,
       rating: metric.rating,
@@ -88,7 +89,7 @@ export function usePerformanceObserver() {
 
     try {
       longTaskObserver.observe({ entryTypes: ['longtask'] });
-    } catch (e) {
+    } catch {
       // Long tasks not supported
     }
 

@@ -1,15 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { PLATFORM_INTEGRATIONS_DATA } from '@/config/landing-data.config';
 
 export const PlatformIntegrationSection: React.FC = () => {
+  // Return null if no platform integrations to display
+  if (PLATFORM_INTEGRATIONS_DATA.length === 0) {
+    return null;
+  }
+
   return (
     <section className="w-full py-20 px-4 bg-gray-50">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Integrate your workflows with<br />your existing calendar
-          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -17,13 +20,14 @@ export const PlatformIntegrationSection: React.FC = () => {
             <Link
               key={platform.id}
               href={platform.href}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-blue-200 flex items-center gap-6"
+              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-[#4ECCA3] flex items-center gap-6"
             >
-              <img
+              <Image
                 src={platform.logo}
                 alt={`${platform.name} logo`}
+                width={64}
+                height={64}
                 className="w-16 h-16"
-                loading="lazy"
               />
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{platform.name}</h3>

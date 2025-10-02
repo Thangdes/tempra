@@ -2,42 +2,74 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { DEPARTMENTS_DATA } from '@/config/landing-data.config';
 import { ArrowRight } from 'lucide-react';
 
 export const DepartmentsSection: React.FC = () => {
   return (
-    <section className="w-full py-16 px-4 bg-gray-50" aria-labelledby="departments-heading">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <h2 id="departments-heading" className="text-3xl font-semibold text-gray-900 mb-3">
-            Templates for every team
+    <section className="w-full py-20 px-4 bg-gradient-to-b from-white via-gray-50/50 to-white relative overflow-hidden" aria-labelledby="departments-heading">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 border border-[#0c7057] rounded-full"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 border border-[#0c7057] rounded-full"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-[#0c7057] rounded-full"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-emerald-50 text-[#0c7057] px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
+            </svg>
+            <span>Tailored for Your Team</span>
+          </div>
+          
+          <h2 id="departments-heading" className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-[#0c7057] to-[#0f8c6a] bg-clip-text text-transparent">
+              Smart templates
+            </span>{' '}
+            for every team
           </h2>
-          <p className="text-gray-600 max-w-2xl">
-            Personalized productivity templates and focus time targets for your role
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            AI-powered productivity templates and focus time strategies customized for your role and industry
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {DEPARTMENTS_DATA.map((dept) => (
             <Link
               key={dept.id}
               href={dept.href}
-              className="group bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-sm transition-all"
+              className="bg-white border border-gray-200 rounded-2xl p-8"
               aria-label={`${dept.title}: ${dept.description}`}
             >
-              <div className="w-24 h-24 mb-5 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-gray-100 transition-colors">
-                <img
-                  src={dept.icon}
-                  alt=""
-                  className="w-20 h-20"
-                  loading="lazy"
-                />
+              <div className="mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl flex items-center justify-center">
+                  <Image
+                    src={dept.icon}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
+                </div>
               </div>
-              <h3 className="text-base font-medium text-gray-900 mb-1">{dept.title}</h3>
-              <div className="flex items-center gap-1 text-sm text-gray-500 group-hover:text-gray-700 transition-colors">
-                <span>Learn more</span>
-                <ArrowRight className="w-3 h-3" />
+              
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900">
+                  {dept.title}
+                </h3>
+                
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Optimize workflows and boost productivity with AI-powered insights
+                </p>
+                
+                <div className="flex items-center gap-2 text-sm font-medium text-[#0c7057]">
+                  <span>Explore templates</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
               </div>
             </Link>
           ))}

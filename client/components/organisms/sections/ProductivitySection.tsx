@@ -16,7 +16,6 @@ import {
 } from 'recharts';
 import { ArrowRight } from 'lucide-react';
 
-// Sample productivity data
 const weeklyData = [
   { day: 'Mon', hours: 6.5, tasks: 12 },
   { day: 'Tue', hours: 7.2, tasks: 15 },
@@ -35,7 +34,6 @@ export const ProductivitySection: React.FC = () => {
   return (
     <section className="w-full py-16 px-4 bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-12">
           <h2 className="text-3xl font-semibold text-gray-900 mb-3">
             Benchmark & optimize your productivity
@@ -45,7 +43,6 @@ export const ProductivitySection: React.FC = () => {
           </p>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-8 mb-10">
           {stats.map((stat, i) => (
             <div key={i} className="border-l-2 border-gray-200 pl-4">
@@ -56,9 +53,7 @@ export const ProductivitySection: React.FC = () => {
           ))}
         </div>
 
-        {/* Charts Grid */}
         <div className="grid lg:grid-cols-2 gap-6 mb-10">
-          {/* Bar Chart */}
           <div className="border border-gray-200 rounded-lg p-6 bg-gray-50/50">
             <h3 className="text-sm font-medium text-gray-900 mb-4">Weekly overview</h3>
             <ResponsiveContainer width="100%" height={200}>
@@ -74,20 +69,19 @@ export const ProductivitySection: React.FC = () => {
                     fontSize: '12px',
                   }}
                 />
-                <Bar dataKey="hours" fill="#10b981" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="hours" fill="#4ECCA3" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
-          {/* Area Chart */}
           <div className="border border-gray-200 rounded-lg p-6 bg-gray-50/50">
             <h3 className="text-sm font-medium text-gray-900 mb-4">Focus time trend</h3>
             <ResponsiveContainer width="100%" height={200}>
               <AreaChart data={weeklyData}>
                 <defs>
                   <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#4ECCA3" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#4ECCA3" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
@@ -104,7 +98,7 @@ export const ProductivitySection: React.FC = () => {
                 <Area
                   type="monotone"
                   dataKey="hours"
-                  stroke="#3b82f6"
+                  stroke="#4ECCA3"
                   strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#colorGradient)"
@@ -114,15 +108,14 @@ export const ProductivitySection: React.FC = () => {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="flex items-center justify-between p-6 bg-gray-900 rounded-lg">
+        <div className="flex items-center justify-between p-6 bg-gradient-to-r from-slate-900 to-gray-800 rounded-lg">
           <div>
             <div className="text-white font-medium mb-1">Start tracking your productivity</div>
             <div className="text-gray-400 text-sm">Join 10,000+ professionals optimizing their time</div>
           </div>
           <Link
             href={EXTERNAL_LINKS.signup}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-100 transition-colors text-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4ECCA3] text-slate-900 font-medium rounded-md hover:bg-[#3dd490] transition-colors text-sm shadow-md"
           >
             Get started
             <ArrowRight className="w-4 h-4" />

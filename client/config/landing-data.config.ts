@@ -208,35 +208,26 @@ export const TRUSTED_COMPANIES = [
   'Zoom',
 ] as const;
 
-export const TESTIMONIALS_DATA = {
-  grafana: {
-    id: 'testimonial-grafana',
-    author: 'Raj Dutt',
-    title: 'CEO & Co-Founder',
-    company: 'Grafana',
-    quote: "Reclaim is an essential tool for our employees to stay focused on their most important work. Our managers are able to keep up with direct reports through regular flexible meetings, and automatically plan and prioritize projects across our teams.",
-    image: 'https://cdn.prod.website-files.com/67859049c02d67b2cfcceebf/689e48e8d8f227a34a566f2b_raj_dutt_grafana_ceo.jpg',
-    companyLogo: 'https://cdn.prod.website-files.com/67859049c02d67b2cfcceebf/67859049c02d67b2cfccf680_new_grafana.svg',
-    illustration: 'https://cdn.prod.website-files.com/67859049c02d67b2cfcceebf/67859049c02d67b2cfccf693_grafana_testimonial.png',
-  },
-} as const;
+export const TESTIMONIALS_DATA: {
+  grafana?: {
+    id: string;
+    author: string;
+    title: string;
+    company: string;
+    quote: string;
+    image: string;
+    companyLogo: string;
+    illustration: string;
+  };
+} = {};
 
-export const PLATFORM_INTEGRATIONS_DATA = [
-  {
-    id: 'platform-google',
-    name: 'Google Calendar',
-    logo: 'https://cdn.prod.website-files.com/67859049c02d67b2cfcceebf/67c8d2c0722c16faee74f944_square_google_icon_02.svg',
-    description: 'AI for your existing Google Calendar →',
-    href: '/compare/google-calendar-alternative',
-  },
-  {
-    id: 'platform-outlook',
-    name: 'Outlook Calendar',
-    logo: 'https://cdn.prod.website-files.com/67859049c02d67b2cfcceebf/67e70b8aee2bc2da64a481c2_compare_outlook_logo.svg',
-    description: 'AI for your existing Outlook Calendar →',
-    href: '/compare/reclaim-vs-outlook',
-  },
-] as const;
+export const PLATFORM_INTEGRATIONS_DATA: Array<{
+  id: string;
+  name: string;
+  logo: string;
+  description: string;
+  href: string;
+}> = [];
 
 export const TIMELINE_DATA = [
   {

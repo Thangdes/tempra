@@ -1,6 +1,6 @@
 {
-  "name": "Tempra - AI Calendar Assistant",
-  "short_name": "Tempra",
+  "name": "Calento - AI Calendar Assistant",
+  "short_name": "Calento",
   "description": "Get your time back with AI. The #1 AI calendar app for individuals, teams, and organizations.",
   "start_url": "/",
   "display": "standalone",
@@ -79,7 +79,7 @@
   "related_applications": [
     {
       "platform": "webapp",
-      "url": "https://tempra.com/manifest.json"
+      "url": "https://calento.com/manifest.json"
     }
   ],
   "prefer_related_applications": false

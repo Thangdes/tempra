@@ -6,7 +6,7 @@ import { STATS_DATA } from '@/config/landing-data.config';
 export const FocusStatsSection: React.FC = () => {
   return (
     <section
-      className="relative w-full py-24 px-4 overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white"
+      className="relative w-full py-24 px-4 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white"
       aria-labelledby="focus-stats-heading"
     >
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] pointer-events-none" />
@@ -14,15 +14,15 @@ export const FocusStatsSection: React.FC = () => {
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-16 space-y-6">
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-medium">
-            Deleting meetings doesn't work – you need to prioritize focus time.
+            Deleting meetings doesn&apos;t work – you need to prioritize focus time.
           </p>
           
           <h2 
             id="focus-stats-heading" 
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
           >
-            Tempra creates{' '}
-            <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            Calento creates{' '}
+            <span className="bg-gradient-to-r from-[#0c7057] to-[#0f8c6a] bg-clip-text text-transparent">
               395 hours
             </span>{' '}
             of focus time per user every year
