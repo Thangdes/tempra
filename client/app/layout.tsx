@@ -2,19 +2,27 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { OrganizationSchema, WebSiteSchema, SoftwareApplicationSchema } from "@/components/seo/structured-data";
+import { ServiceWorkerRegister } from "@/components/pwa/service-worker-register";
+import { WebVitals } from "@/components/analytics/web-vitals";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  weight: ["400", "500", "700"],
 });
 
-// SEO METADATA NÂNG CẤP theo docs2
 export const metadata: Metadata = {
   title: {
     template: '%s | Tempra - AI Calendar Assistant',
@@ -70,7 +78,6 @@ export const metadata: Metadata = {
   },
 };
 
-// VIEWPORT CONFIG theo docs2
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -89,12 +96,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        
+        <OrganizationSchema />
+        <WebSiteSchema />
+        <SoftwareApplicationSchema />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+        <ServiceWorkerRegister />
+        <WebVitals />
         <QueryProvider>
           {children}
           <Toaster />
