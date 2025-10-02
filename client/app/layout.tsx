@@ -6,7 +6,6 @@ import { OrganizationSchema, WebSiteSchema, SoftwareApplicationSchema } from "@/
 import { ServiceWorkerRegister } from "@/components/pwa/service-worker-register";
 import { WebVitals } from "@/components/analytics/web-vitals";
 import "./globals.css";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -98,9 +97,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+        <meta name="google-site-verification" content="3ej64bq8XA8NjspO3ZZUpi6lOSzCtXC8sj0niFTLHV0" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
