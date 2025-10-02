@@ -1,7 +1,7 @@
 export const APP_CONFIG = {
   name: 'Tempra',
-  tagline: 'AI Calendar Assistant',
-  description: 'Get your time back with AI. The #1 AI calendar app for individuals, teams, and organizations.',
+  tagline: 'Your AI-Powered Calendar Assistant',
+  description: 'The smartest way to manage your time. Automatically schedule meetings, sync calendars, and get AI-powered suggestions to maximize your productivity.',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   support: {
     email: 'support@tempra.com',
@@ -24,11 +24,11 @@ export const BRAND_COLORS = {
 } as const;
 
 export const NAVIGATION_LINKS = [
-  { label: 'Product', href: '#', hasDropdown: true },
-  { label: 'Teams', href: '#', hasDropdown: true },
-  { label: 'Resources', href: '#', hasDropdown: true },
+  { label: 'Features', href: '/features', hasDropdown: false },
+  { label: 'Solutions', href: '#', hasDropdown: true },
+  { label: 'Integrations', href: '/integrations', hasDropdown: false },
   { label: 'Pricing', href: '/pricing', hasDropdown: false },
-  { label: 'Enterprise', href: '/enterprise', hasDropdown: false },
+  { label: 'Resources', href: '#', hasDropdown: true },
 ] as const;
 
 export const EXTERNAL_LINKS = {
@@ -42,45 +42,52 @@ export const EXTERNAL_LINKS = {
 export const INTEGRATIONS = {
   googleCalendar: {
     name: 'Google Calendar',
-    icon: 'G',
+    icon: 'https://img.logo.dev/google.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=100&retina=true&format=png&theme=dark',
     color: '#4285F4',
   },
   outlook: {
     name: 'Outlook',
-    icon: 'O',
+    icon: 'https://img.logo.dev/microsoft.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=100&retina=true&format=png&theme=dark',
     color: '#0078D4',
   },
   slack: {
     name: 'Slack',
-    icon: 'S',
+    icon: 'https://img.logo.dev/slack.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=100&retina=true&format=png&theme=dark',
     color: '#4A154B',
   },
   zoom: {
-    name: 'Zoom',
-    icon: 'Z',
+    name: 'Linear',
+    icon: 'https://www.logo.dev/customer-logos/linear.svg',
     color: '#2D8CFF',
   },
 } as const;
 
 export const FEATURES = {
   hero: {
-    title: 'Get your time\nback with AI.',
-    subtitle: '#1 AI calendar app for',
-    links: [
-      { text: 'individuals', href: '/individuals' },
-      { text: 'teams', href: '/teams' },
-      { text: 'organizations', href: '/organizations' },
-    ],
+    title: 'Your calendar, supercharged with AI',
+    subtitle: 'The smartest way to manage your time. Let AI handle the complexity of scheduling while you focus on what matters most.',
     cta: {
-      text: 'Get started – free forever!',
+      primary: 'Get started free',
+      secondary: 'Watch demo',
       href: EXTERNAL_LINKS.signup,
     },
-    benefits: [
-      "Yes, it's 100% free! Here's how it works",
-      "We don't train AI on your data",
-    ],
+  },
+  calendar: {
+    smartScheduling: 'AI automatically finds the best meeting times',
+    multiCalendar: 'Sync unlimited calendars in one view',
+    insights: 'Get intelligent time management insights',
+    automation: 'Automate repetitive scheduling tasks',
   },
 } as const;
+
+export const TRUSTED_COMPANIES = [
+  { name: 'Google', logo: 'google' },
+  { name: 'Microsoft', logo: 'microsoft' },
+  { name: 'Slack', logo: 'slack' },
+  { name: 'Zoom', logo: 'zoom' },
+  { name: 'Notion', logo: 'notion' },
+  { name: 'Asana', logo: 'asana' },
+] as const;
 
 export const SEO_KEYWORDS = [
   'AI calendar',
