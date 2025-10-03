@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { QueryProvider } from "@/providers/query-provider";
+import { QueryProvider } from "@/provider/query-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { OrganizationSchema, WebSiteSchema, SoftwareApplicationSchema } from "@/components/seo/structured-data";
 import { ServiceWorkerRegister } from "@/components/pwa/service-worker-register";
@@ -24,10 +24,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Calento - AI Calendar Assistant',
-    default: 'Calento - AI Calendar Assistant',
+    template: '%s | Calento BETA - AI Calendar Assistant',
+    default: 'Calento BETA - AI Calendar Assistant',
   },
-  description: 'Get your time back with AI. The #1 AI calendar app for individuals, teams, and organizations.',
+  description: 'Get your time back with AI. The #1 AI calendar app for individuals, teams, and organizations. Currently in BETA testing.',
   keywords: ['AI calendar', 'scheduling', 'productivity', 'time management', 'Google Calendar', 'Outlook'],
   authors: [{ name: 'Calento Team' }],
   creator: 'Calento',
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    siteName: 'Calento',
-    title: 'Calento - AI Calendar Assistant',
-    description: 'Get your time back with AI',
+    siteName: 'Calento BETA',
+    title: 'Calento BETA - AI Calendar Assistant',
+    description: 'Get your time back with AI - Currently in BETA testing',
     images: [
       {
         url: '/og-image.png',
@@ -59,8 +59,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Calento - AI Calendar Assistant',
-    description: 'Get your time back with AI',
+    title: 'Calento BETA - AI Calendar Assistant',
+    description: 'Get your time back with AI - Currently in BETA testing',
     images: ['/og-image.png'],
     creator: '@calento',
   },

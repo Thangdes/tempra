@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const FooterBottom: React.FC = () => {
     const legalLinks = [
         { name: "Terms of Service", href: "#" },
@@ -17,12 +19,12 @@ export const FooterBottom: React.FC = () => {
                     <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
                         {legalLinks.map((item, index) => (
                             <div key={item.name} className="flex items-center gap-6">
-                                <a 
+                                <Link 
                                     href={item.href} 
-                                    className="text-gray-700 hover:text-[#0c7057] transition-colors duration-200 font-semibold hover:font-bold"
+                                    className="text-gray-700 hover:text-[#1e6956] transition-colors duration-200 font-semibold "
                                 >
                                     {item.name}
-                                </a>
+                                </Link>
                                 {index < legalLinks.length - 1 && (
                                     <div className="hidden sm:block w-1 h-1 bg-gray-300 rounded-full"></div>
                                 )}
