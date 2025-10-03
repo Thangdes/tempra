@@ -37,7 +37,7 @@ export function NavLink({
           'cursor-pointer transition-all duration-200 font-semibold text-base tracking-wide px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50',
           isActive 
             ? 'text-[#0c7057] bg-gradient-to-r from-emerald-50 to-green-50 font-bold shadow-sm' 
-            : 'text-gray-800 hover:text-[#0c7057] hover:font-bold',
+            : 'text-gray-800 hover:text-[#0c7057]',
           className
         )}
         aria-expanded={hasDropdown ? isOpen : undefined}
