@@ -15,8 +15,6 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 
-
-
 @Module({
   imports: [
     NestConfigModule.forRoot({
@@ -24,7 +22,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
     }),
     ConfigModule,
     CommonModule,
-    QueueModule, // BullMQ background job processing
+    QueueModule, 
     DatabaseModule,
     HealthModule,
     UsersModule,
