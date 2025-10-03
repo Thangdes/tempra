@@ -34,7 +34,11 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-[#FDF9F7] backdrop-blur-lg border-b border-gray-200/50 shadow-sm' : 'bg-[#FDF9F7] border-b border-gray-100'}`}
+        className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+          isScrolled 
+            ? 'bg-white/95 dark:bg-black/95 backdrop-blur-lg border-b border-cod-gray-200/50 dark:border-cod-gray-700/50 shadow-sm' 
+            : 'bg-white dark:bg-black border-b border-cod-gray-100 dark:border-cod-gray-800'
+        }`}
         role="banner"
       >
         <div className="max-w-7xl mx-auto">
@@ -65,7 +69,7 @@ export const Header: React.FC = () => {
             <div className="hidden lg:flex items-center gap-4">
               <Link
                 href={EXTERNAL_LINKS.login}
-                className="text-base font-bold text-gray-800 hover:text-[#0c7057] transition-all duration-200 px-6 py-2.5 rounded-lg border-2 border-gray-300 hover:border-[#0c7057] hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 tracking-wide"
+                className="text-base font-bold text-cod-gray-800 dark:text-cod-gray-200 hover:text-[#0c7057] dark:hover:text-emerald-400 transition-all duration-200 px-6 py-2.5 rounded-lg border-2 border-cod-gray-300 dark:border-cod-gray-600 hover:border-[#0c7057] dark:hover:border-emerald-400 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 dark:hover:from-emerald-950/20 dark:hover:to-green-950/20 tracking-wide"
               >
                 Log in
               </Link>
@@ -80,7 +84,7 @@ export const Header: React.FC = () => {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-[#0c7057] hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0c7057]/20 border-2 border-transparent hover:border-emerald-200"
+              className="lg:hidden p-2 rounded-lg text-cod-gray-700 dark:text-cod-gray-300 hover:text-[#0c7057] dark:hover:text-emerald-400 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 dark:hover:from-emerald-950/20 dark:hover:to-green-950/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0c7057]/20 border-2 border-transparent hover:border-emerald-200 dark:hover:border-emerald-700"
               aria-label="Toggle mobile menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -126,11 +130,11 @@ export const Header: React.FC = () => {
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div 
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm"
             aria-hidden="true"
           />
           <div
-            className="fixed top-16 left-0 right-0 bottom-0 bg-white border-t border-gray-200 overflow-y-auto animate-in slide-in-from-top-4 duration-300"
+            className="fixed top-16 left-0 right-0 bottom-0 bg-white dark:bg-cod-gray-950 border-t border-cod-gray-200 dark:border-cod-gray-700 overflow-y-auto animate-in slide-in-from-top-4 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="px-4 py-6 space-y-6">
@@ -139,7 +143,7 @@ export const Header: React.FC = () => {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="block px-4 py-3 text-base font-bold text-gray-800 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 hover:text-[#0c7057] rounded-lg transition-all duration-200 tracking-wide"
+                    className="block px-4 py-3 text-base font-bold text-cod-gray-800 dark:text-cod-gray-200 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 dark:hover:from-emerald-950/20 dark:hover:to-green-950/20 hover:text-[#0c7057] dark:hover:text-emerald-400 rounded-lg transition-all duration-200 tracking-wide"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
@@ -147,19 +151,12 @@ export const Header: React.FC = () => {
                 ))}
               </nav>
 
-              <div className="border-t border-gray-200" />
+              <div className="border-t border-cod-gray-200 dark:border-cod-gray-700" />
 
               <div className="space-y-3">
                 <Link
-                  href={EXTERNAL_LINKS.contactSales}
-                  className="block px-4 py-3 text-center text-base font-bold text-gray-800 hover:text-[#0c7057] bg-gray-50 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 rounded-lg transition-all duration-200 tracking-wide"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contact Sales
-                </Link>
-                <Link
                   href={EXTERNAL_LINKS.login}
-                  className="block px-4 py-3 text-center text-base font-bold text-gray-800 hover:text-[#0c7057] bg-gray-50 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 rounded-lg transition-all duration-200 tracking-wide"
+                  className="block px-4 py-3 text-center text-base font-bold text-cod-gray-800 dark:text-cod-gray-200 hover:text-[#0c7057] dark:hover:text-emerald-400 bg-cod-gray-50 dark:bg-cod-gray-800 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 dark:hover:from-emerald-950/20 dark:hover:to-green-950/20 rounded-lg transition-all duration-200 tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Log In

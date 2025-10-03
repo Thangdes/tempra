@@ -32,30 +32,30 @@ const stats = [
 
 export const ProductivitySection: React.FC = () => {
   return (
-    <section className="w-full py-16 px-4 bg-white border-t border-gray-100">
+    <section className="w-full py-16 px-4 bg-white dark:bg-cod-gray-950 dark:border-cod-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-          <h2 className="text-3xl font-semibold text-gray-900 mb-3">
+          <h2 className="text-3xl font-semibold text-cod-gray-900 dark:text-cod-gray-100 mb-3 transition-colors duration-300">
             Benchmark & optimize your productivity
           </h2>
-          <p className="text-gray-600 max-w-xl">
+          <p className="text-cod-gray-600 dark:text-cod-gray-400 max-w-xl transition-colors duration-300">
             Track your patterns, visualize progress, and work smarter with data-driven insights
           </p>
         </div>
 
         <div className="grid grid-cols-3 gap-8 mb-10">
           {stats.map((stat, i) => (
-            <div key={i} className="border-l-2 border-gray-200 pl-4">
-              <div className="text-xs uppercase text-gray-500 tracking-wide mb-1">{stat.label}</div>
-              <div className="text-3xl font-semibold text-gray-900">{stat.value}</div>
-              <div className="text-sm text-gray-500 mt-1">{stat.subtext}</div>
+            <div key={i} className="border-l-2 border-cod-gray-200 dark:border-cod-gray-700 pl-4 transition-colors duration-300">
+              <div className="text-xs uppercase text-cod-gray-500 dark:text-cod-gray-400 tracking-wide mb-1 transition-colors duration-300">{stat.label}</div>
+              <div className="text-3xl font-semibold text-cod-gray-900 dark:text-cod-gray-100 transition-colors duration-300">{stat.value}</div>
+              <div className="text-sm text-cod-gray-500 dark:text-cod-gray-400 mt-1 transition-colors duration-300">{stat.subtext}</div>
             </div>
           ))}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6 mb-10">
-          <div className="border border-gray-200 rounded-lg p-6 bg-gray-50/50">
-            <h3 className="text-sm font-medium text-gray-900 mb-4">Weekly overview</h3>
+          <div className="border border-cod-gray-200 dark:border-cod-gray-700 rounded-lg p-6 bg-cod-gray-50/50 dark:bg-cod-gray-800/50 transition-colors duration-300">
+            <h3 className="text-sm font-medium text-cod-gray-900 dark:text-cod-gray-100 mb-4 transition-colors duration-300">Weekly overview</h3>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={weeklyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
@@ -74,8 +74,8 @@ export const ProductivitySection: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-6 bg-gray-50/50">
-            <h3 className="text-sm font-medium text-gray-900 mb-4">Focus time trend</h3>
+          <div className="border border-cod-gray-200 dark:border-cod-gray-700 rounded-lg p-6 bg-cod-gray-50/50 dark:bg-cod-gray-800/50 transition-colors duration-300">
+            <h3 className="text-sm font-medium text-cod-gray-900 dark:text-cod-gray-100 mb-4 transition-colors duration-300">Focus time trend</h3>
             <ResponsiveContainer width="100%" height={200}>
               <AreaChart data={weeklyData}>
                 <defs>
@@ -108,14 +108,14 @@ export const ProductivitySection: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between p-6 bg-gradient-to-r from-slate-900 to-gray-800 rounded-lg">
+        <div className="flex items-center justify-between p-6 bg-gradient-to-r from-cod-gray-900 to-cod-gray-800 dark:from-cod-gray-800 dark:to-cod-gray-700 rounded-lg transition-colors duration-300">
           <div>
             <div className="text-white font-medium mb-1">Start tracking your productivity</div>
-            <div className="text-gray-400 text-sm">Join 10,000+ professionals optimizing their time</div>
+            <div className="text-cod-gray-400 dark:text-cod-gray-300 text-sm transition-colors duration-300">Join 10,000+ professionals optimizing their time</div>
           </div>
           <Link
             href={EXTERNAL_LINKS.signup}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4ECCA3] text-slate-900 font-medium rounded-md hover:bg-[#3dd490] transition-colors text-sm shadow-md"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4ECCA3] text-cod-gray-900 font-medium rounded-md hover:bg-[#3dd490] transition-colors text-sm shadow-md"
           >
             Get started
             <ArrowRight className="w-4 h-4" />

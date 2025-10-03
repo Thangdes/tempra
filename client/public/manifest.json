@@ -79,7 +79,7 @@
   "related_applications": [
     {
       "platform": "webapp",
-      "url": "https://calento.com/manifest.json"
+      "url": "https://calento.space/manifest.json"
     }
   ],
   "prefer_related_applications": false

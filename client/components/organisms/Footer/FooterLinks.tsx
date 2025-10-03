@@ -115,14 +115,14 @@ const socialPlatforms = [
 
 export const FooterLinks: React.FC = () => {
     return (
-        <div className="w-full bg-gradient-to-b from-slate-50 to-gray-100 py-16 px-4">
+        <div className="w-full bg-gradient-to-b from-cod-gray-50 to-cod-gray-100 dark:from-cod-gray-900 dark:to-cod-gray-800 py-16 px-4 transition-colors duration-300">
             <div className="max-w-7xl mx-auto">
                 {/* Logo & Description Section */}
                 <div className="text-center mb-12">
                     <div className="flex justify-center mb-4">
                         <Logo size="lg" />
                     </div>
-                    <p className="text-gray-700 max-w-xl mx-auto mb-8 font-medium">
+                    <p className="text-cod-gray-700 dark:text-cod-gray-300 max-w-xl mx-auto mb-8 font-medium transition-colors duration-300">
                         AI-powered calendar assistant helping professionals reclaim time and boost productivity
                     </p>
                     
@@ -132,7 +132,7 @@ export const FooterLinks: React.FC = () => {
                             <a
                                 key={platform.name}
                                 href={platform.href}
-                                className={`p-3 bg-white text-gray-700 rounded-xl transition-all duration-300 transform hover:scale-110 hover:shadow-lg border border-gray-200 hover:border-transparent ${platform.color}`}
+                                className={`p-3 bg-white dark:bg-cod-gray-700 text-cod-gray-700 dark:text-cod-gray-300 rounded-xl transition-all duration-300 transform hover:scale-110 hover:shadow-lg border border-cod-gray-200 dark:border-cod-gray-600 hover:border-transparent ${platform.color}`}
                                 aria-label={platform.name}
                                 title={platform.name}
                             >
@@ -140,7 +140,7 @@ export const FooterLinks: React.FC = () => {
                             </a>
                         ))}
                     </div>
-                    <p className="text-sm text-gray-600 font-medium">Follow us for updates and tips</p>
+                    <p className="text-sm text-cod-gray-600 dark:text-cod-gray-400 font-medium transition-colors duration-300">Follow us for updates and tips</p>
                 </div>
 
                 {/* Desktop Footer Grid */}

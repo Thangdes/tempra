@@ -10,7 +10,7 @@ export const PlatformIntegrationSection: React.FC = () => {
   }
 
   return (
-    <section className="w-full py-20 px-4 bg-gray-50">
+    <section className="w-full py-20 px-4 bg-cod-gray-50 dark:bg-cod-gray-950 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
         </div>
@@ -20,7 +20,7 @@ export const PlatformIntegrationSection: React.FC = () => {
             <Link
               key={platform.id}
               href={platform.href}
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-[#4ECCA3] flex items-center gap-6"
+              className="bg-white dark:bg-cod-gray-800 rounded-2xl p-8 border border-cod-gray-200 dark:border-cod-gray-700 hover:shadow-lg dark:hover:shadow-cod-gray-950/30 transition-all duration-300 hover:border-[#4ECCA3] dark:hover:border-emerald-400 flex items-center gap-6 group"
             >
               <Image
                 src={platform.logo}
@@ -30,8 +30,8 @@ export const PlatformIntegrationSection: React.FC = () => {
                 className="w-16 h-16"
               />
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{platform.name}</h3>
-                <p className="text-gray-600">{platform.description}</p>
+                <h3 className="text-xl font-bold text-cod-gray-900 dark:text-cod-gray-100 mb-2 transition-colors duration-300">{platform.name}</h3>
+                <p className="text-cod-gray-600 dark:text-cod-gray-400 transition-colors duration-300">{platform.description}</p>
               </div>
             </Link>
           ))}

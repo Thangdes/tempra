@@ -6,23 +6,23 @@ import { STATS_DATA } from '@/config/landing-data.config';
 export const FocusStatsSection: React.FC = () => {
   return (
     <section
-      className="relative w-full py-24 px-4 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white"
+      className="relative w-full py-24 px-4 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white dark:from-cod-gray-950 dark:via-emerald-950/20 dark:to-cod-gray-950 transition-colors duration-300"
       aria-labelledby="focus-stats-heading"
     >
-      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] pointer-events-none dark:hidden" />
       
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-16 space-y-6">
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-medium">
+          <p className="text-lg md:text-xl text-cod-gray-600 dark:text-cod-gray-400 max-w-3xl mx-auto font-medium transition-colors duration-300">
             Deleting meetings doesn&apos;t work – you need to prioritize focus time.
           </p>
           
           <h2 
             id="focus-stats-heading" 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-cod-gray-900 dark:text-white leading-tight transition-colors duration-300"
           >
             Calento creates{' '}
-            <span className="bg-gradient-to-r from-[#0c7057] to-[#0f8c6a] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0c7057] to-[#0f8c6a] dark:from-emerald-400 dark:to-green-400 bg-clip-text text-transparent">
               395 hours
             </span>{' '}
             of focus time per user every year
@@ -33,13 +33,13 @@ export const FocusStatsSection: React.FC = () => {
           {STATS_DATA.focus.map((stat) => (
             <div 
               key={stat.id} 
-              className="group relative p-8  transition-all duration-300 hover:-translate-y-1"
+              className="group relative p-8 bg-white/50 dark:bg-cod-gray-900/50 backdrop-blur-sm rounded-2xl border border-cod-gray-200/50 dark:border-cod-gray-700/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-cod-gray-950/50"
             >
-              <div className="text-5xl font-bold text-gray-900 mb-3 tracking-tight" aria-label={`${stat.value} ${stat.label}`}>
+              <div className="text-5xl font-bold text-cod-gray-900 dark:text-cod-gray-100 mb-3 tracking-tight transition-colors duration-300" aria-label={`${stat.value} ${stat.label}`}>
                 {stat.value}
               </div>
               
-              <div className="text-gray-600 text-base font-medium leading-snug whitespace-pre-line">
+              <div className="text-cod-gray-600 dark:text-cod-gray-400 text-base font-medium leading-snug whitespace-pre-line transition-colors duration-300">
                 {stat.label}
               </div>
             </div>
