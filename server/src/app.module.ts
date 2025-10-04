@@ -16,6 +16,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './modules/auth/auth.module';
 import { EmailModule } from './modules/email/email.module';
 import { AvailabilityModule } from './modules/availability/availability.module';
+import { BookingModule } from './modules/booking/booking.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 
 @Module({
@@ -37,6 +38,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
     AuthModule,
     EmailModule,
     AvailabilityModule,
+    BookingModule,
   ],
   providers: [
     {
