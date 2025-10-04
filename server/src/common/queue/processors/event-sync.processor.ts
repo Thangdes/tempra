@@ -5,6 +5,7 @@ import { EventSyncJobData, BatchEventSyncJobData, JobResult } from '../interface
 import { QueueName } from '../types/queue.types';
 import { getDefaultWorkerConfig } from '../config/queue.config';
 import { EventSyncService } from '../../../modules/event/services/event-sync.service';
+import { SyncErrorRecoveryService } from '../../services/sync-error-recovery.service';
 
 @Injectable()
 export class EventSyncProcessor implements OnModuleInit, OnModuleDestroy {
@@ -14,6 +15,7 @@ export class EventSyncProcessor implements OnModuleInit, OnModuleDestroy {
     constructor(
         private readonly configService: ConfigService,
         private readonly eventSyncService: EventSyncService,
+        private readonly syncErrorRecovery: SyncErrorRecoveryService,
     ) {}
 
     async onModuleInit() {
@@ -86,7 +88,6 @@ export class EventSyncProcessor implements OnModuleInit, OnModuleDestroy {
         await job.updateProgress(10);
 
         try {
-            // Use real EventSyncService
             const result = await this.eventSyncService.pullEventsFromGoogle(userId, options);
             
             await job.updateProgress(100);
@@ -103,13 +104,27 @@ export class EventSyncProcessor implements OnModuleInit, OnModuleDestroy {
             };
         } catch (error) {
             this.logger.error(`Failed to pull events: ${error.message}`, error.stack);
+            
+            try {
+                await this.syncErrorRecovery.logSyncError(
+                    userId,
+                    'event_sync',
+                    error.message,
+                    {
+                        operation: 'pull',
+                        options: options,
+                        jobId: job.id,
+                        timestamp: new Date().toISOString()
+                    }
+                );
+            } catch (logError) {
+                this.logger.error(`Failed to log sync error: ${logError.message}`);
+            }
+            
             throw error;
         }
     }
 
-    /**
-     * Process event push job (push event to Google Calendar)
-     */
     private async processEventPush(job: Job<EventSyncJobData>): Promise<JobResult> {
         const { userId, eventId, calendarId } = job.data;
         
@@ -121,7 +136,6 @@ export class EventSyncProcessor implements OnModuleInit, OnModuleDestroy {
                 throw new Error('Event ID is required');
             }
 
-            // Query event directly from database
             const query = `
                 SELECT * FROM events 
                 WHERE id = $1 AND user_id = $2
@@ -138,7 +152,6 @@ export class EventSyncProcessor implements OnModuleInit, OnModuleDestroy {
 
             const event = queryResult.rows[0];
 
-            // Push to Google using EventSyncService
             const syncResult = await this.eventSyncService.createEventWithSync(
                 event as any,
                 userId,

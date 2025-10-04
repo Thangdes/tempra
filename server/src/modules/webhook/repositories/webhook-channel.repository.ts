@@ -157,4 +157,75 @@ export class WebhookChannelRepository {
         
         return count;
     }
+
+    /**
+     * Find channels expiring within specified hours
+     */
+    async findExpiringWithin(hours: number): Promise<WebhookChannel[]> {
+        const query = `
+            SELECT * FROM webhook_channels 
+            WHERE expiration <= NOW() + INTERVAL '${hours} hours' 
+            AND expiration > NOW() 
+            AND is_active = true
+            ORDER BY expiration ASC
+        `;
+
+        const result = await this.db.query(query);
+        return result.rows;
+    }
+
+    /**
+     * Count active webhook channels
+     */
+    async countActive(): Promise<number> {
+        const query = `
+            SELECT COUNT(*) as count FROM webhook_channels 
+            WHERE is_active = true
+        `;
+
+        const result = await this.db.query(query);
+        return parseInt(result.rows[0].count);
+    }
+
+    /**
+     * Count channels expiring within specified hours
+     */
+    async countExpiringWithin(hours: number): Promise<number> {
+        const query = `
+            SELECT COUNT(*) as count FROM webhook_channels 
+            WHERE expiration <= NOW() + INTERVAL '${hours} hours' 
+            AND expiration > NOW() 
+            AND is_active = true
+        `;
+
+        const result = await this.db.query(query);
+        return parseInt(result.rows[0].count);
+    }
+
+    /**
+     * Count expired channels
+     */
+    async countExpired(): Promise<number> {
+        const query = `
+            SELECT COUNT(*) as count FROM webhook_channels 
+            WHERE expiration < NOW() AND is_active = true
+        `;
+
+        const result = await this.db.query(query);
+        return parseInt(result.rows[0].count);
+    }
+
+    /**
+     * Find all active channels
+     */
+    async findAllActive(): Promise<WebhookChannel[]> {
+        const query = `
+            SELECT * FROM webhook_channels 
+            WHERE is_active = true
+            ORDER BY created_at DESC
+        `;
+
+        const result = await this.db.query(query);
+        return result.rows;
+    }
 }
