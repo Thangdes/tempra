@@ -8,7 +8,6 @@ import {
   TestimonialSection,
   GreenStatsSection,
   IntegrationsSection,
-  PlatformIntegrationSection,
   SecondTestimonialSection,
 } from "@/components/organisms";
 
@@ -35,9 +34,6 @@ export default function Home() {
         </div>
         <div className="bg-[#f6f6f6] dark:bg-[#3d3d3d] transition-colors duration-300">
           <IntegrationsSection />
-        </div>
-        <div className="bg-white dark:bg-[#121212] transition-colors duration-300">
-          <PlatformIntegrationSection />
         </div>
         <div className="bg-gradient-to-b from-[#f6f6f6] to-white dark:from-[#3d3d3d] dark:to-[#121212] transition-colors duration-300">
           <SecondTestimonialSection />

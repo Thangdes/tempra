@@ -63,15 +63,21 @@ export const HeroSection = () => {
           transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <button className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#4ECCA3] px-8 text-base font-semibold text-slate-900 shadow-sm transition-all hover:bg-[#3dd490] focus:outline-none focus:ring-2 focus:ring-[#4ECCA3] focus:ring-offset-2 active:scale-[0.98] sm:w-auto dark:bg-[#4ECCA3] dark:hover:bg-[#3dd490] dark:focus:ring-offset-slate-900">
+          <a
+            href="/auth/signup"
+            className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#4ECCA3] px-8 text-base font-semibold text-slate-900 shadow-sm transition-all hover:bg-[#3dd490] focus:outline-none focus:ring-2 focus:ring-[#4ECCA3] focus:ring-offset-2 active:scale-[0.98] sm:w-auto dark:bg-[#4ECCA3] dark:hover:bg-[#3dd490] dark:focus:ring-offset-slate-900"
+          >
             {FEATURES.hero.cta.primary}
             <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
-          <button className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-8 text-base font-semibold text-slate-900 transition-all hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 active:scale-[0.98] sm:w-auto dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 dark:focus:ring-offset-slate-900">
+          </a>
+          <a
+            href="#demo-video"
+            className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-8 text-base font-semibold text-slate-900 transition-all hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 active:scale-[0.98] sm:w-auto dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 dark:focus:ring-offset-slate-900"
+          >
             {FEATURES.hero.cta.secondary}
-          </button>
+          </a>
         </motion.div>
 
         <motion.div
@@ -169,14 +175,14 @@ export const HeroSection = () => {
               <div className="h-3 w-3 rounded-full bg-slate-300 dark:bg-slate-700" />
             </div>
             <div className="ml-4 flex-1 rounded-md bg-white px-3 py-1.5 text-xs text-slate-400 dark:bg-slate-800 dark:text-slate-500">
-              app.tempra.ai/dashboard
+              app.calento.ai/dashboard
             </div>
           </div>
           
           <div className="relative aspect-[16/10] bg-slate-100 dark:bg-slate-950">
             <Image
               src="https://cdn.dribbble.com/userupload/9926004/file/original-f57c1c7ecad5712b6cb18eaeb17e574b.png?resize=1024x768&vertical=center"
-              alt="Tempra calendar dashboard showing AI-powered scheduling interface"
+              alt="Calento calendar dashboard showing AI-powered scheduling interface"
               className="h-full w-full object-cover"
               width={2000}
               height={1250}
@@ -297,7 +303,7 @@ export const HeroSection = () => {
                 key={`${company.name}-${index}`}
                 className="mx-8 group cursor-pointer"
               >
-                <div className="flex h-20 w-32 items-center justify-center rounded-2xl border border-slate-200/50 bg-white/80 backdrop-blur-sm transition-all duration-300 dark:border-slate-700/50 dark:bg-slate-800/80">
+                <div className="flex h-20 w-32 items-center justify-center transition-all duration-300">
                   <Image 
                     src={company.logo} 
                     alt={`${company.name} logo`}
@@ -323,7 +329,7 @@ export const HeroSection = () => {
                 key={`${company.name}-duplicate-${index}`}
                 className="mx-8 group cursor-pointer"
               >
-                <div className="flex h-20 w-32 items-center justify-center rounded-2xl border border-slate-200/50 bg-white/80 backdrop-blur-sm transition-all duration-300 dark:border-slate-700/50 dark:bg-slate-800/80">
+                <div className="flex h-20 w-32 items-center justify-center transition-all duration-300">
                   <Image 
                     src={company.logo} 
                     alt={`${company.name} logo`}

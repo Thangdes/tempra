@@ -115,9 +115,8 @@ const socialPlatforms = [
 
 export const FooterLinks: React.FC = () => {
     return (
-        <div className="w-full bg-gradient-to-b from-cod-gray-50 to-cod-gray-100 dark:from-cod-gray-900 dark:to-cod-gray-800 py-16 px-4 transition-colors duration-300">
+        <div className="w-full py-16 px-4 transition-colors duration-300">
             <div className="max-w-7xl mx-auto">
-                {/* Logo & Description Section */}
                 <div className="text-center mb-12">
                     <div className="flex justify-center mb-4">
                         <Logo size="lg" />
@@ -126,7 +125,6 @@ export const FooterLinks: React.FC = () => {
                         AI-powered calendar assistant helping professionals reclaim time and boost productivity
                     </p>
                     
-                    {/* Social Links with Bright Colors */}
                     <div className="flex justify-center gap-3 mb-4">
                         {socialPlatforms.map((platform) => (
                             <a

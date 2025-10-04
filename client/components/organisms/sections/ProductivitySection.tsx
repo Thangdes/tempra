@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { EXTERNAL_LINKS } from '@/config/app.config';
 import {
   BarChart,
   Bar,
@@ -107,14 +106,13 @@ export const ProductivitySection: React.FC = () => {
             </ResponsiveContainer>
           </div>
         </div>
-
         <div className="flex items-center justify-between p-6 bg-gradient-to-r from-cod-gray-900 to-cod-gray-800 dark:from-cod-gray-800 dark:to-cod-gray-700 rounded-lg transition-colors duration-300">
           <div>
             <div className="text-white font-medium mb-1">Start tracking your productivity</div>
             <div className="text-cod-gray-400 dark:text-cod-gray-300 text-sm transition-colors duration-300">Join 10,000+ professionals optimizing their time</div>
           </div>
           <Link
-            href={EXTERNAL_LINKS.signup}
+            href="/auth/signup"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4ECCA3] text-cod-gray-900 font-medium rounded-md hover:bg-[#3dd490] transition-colors text-sm shadow-md"
           >
             Get started

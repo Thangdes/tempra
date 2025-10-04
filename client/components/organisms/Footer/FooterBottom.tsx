@@ -10,7 +10,7 @@ export const FooterBottom: React.FC = () => {
     ];
 
     return (
-        <div className="w-full bg-gradient-to-r from-cod-gray-50 to-cod-gray-100 dark:from-cod-gray-800 dark:to-cod-gray-900 py-8 px-4 border-t border-cod-gray-300 dark:border-cod-gray-600 transition-colors duration-300">
+        <div className="w-full py-8 px-4 bg-transparent  duration-300">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="flex items-center gap-4">
