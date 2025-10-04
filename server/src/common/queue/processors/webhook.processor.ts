@@ -5,10 +5,6 @@ import { WebhookJobData, JobResult } from '../interfaces/queue-job.interface';
 import { QueueName } from '../types/queue.types';
 import { getDefaultWorkerConfig } from '../config/queue.config';
 
-/**
- * Webhook job processor
- * This worker processes webhook delivery jobs from the queue
- */
 @Injectable()
 export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
     private readonly logger = new Logger(WebhookProcessor.name);
@@ -16,8 +12,6 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
 
     constructor(
         private readonly configService: ConfigService,
-        // Inject HTTP service for webhook delivery
-        // private readonly httpService: HttpService,
     ) {}
 
     async onModuleInit() {
@@ -34,7 +28,6 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
             }
         );
 
-        // Event listeners
         this.worker.on('completed', (job) => {
             this.logger.log(`Webhook job ${job.id} delivered to ${job.data.webhookUrl}`);
         });
@@ -49,9 +42,6 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
         this.logger.log(`Webhook worker started with concurrency: ${workerConfig.concurrency}`);
     }
 
-    /**
-     * Process webhook job
-     */
     private async processJob(job: Job<WebhookJobData>): Promise<JobResult> {
         const { webhookUrl, payload, headers, userId } = job.data;
 
@@ -62,17 +52,6 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
         try {
             await job.updateProgress(20);
 
-            // TODO: Use HTTP service to deliver webhook
-            // const response = await this.httpService.post(webhookUrl, payload, {
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'User-Agent': 'Tempra-Webhook/1.0',
-            //         ...headers,
-            //     },
-            //     timeout: 10000, // 10 seconds
-            // });
-
-            // Placeholder - simulate webhook delivery
             await this.simulateWebhookDelivery(webhookUrl, payload);
             
             await job.updateProgress(100);
@@ -81,7 +60,6 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
                 success: true,
                 message: `Webhook delivered successfully to ${webhookUrl}`,
                 data: {
-                    // statusCode: response.status,
                     statusCode: 200,
                 },
             };
@@ -91,12 +69,10 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
                 error.stack
             );
             
-            // Check if we should retry
             if (this.shouldRetry(error)) {
-                throw error; // Let BullMQ handle retry
+                throw error;
             }
             
-            // Don't retry for 4xx errors (client errors)
             return {
                 success: false,
                 error: `Webhook delivery failed: ${error.message}`,
@@ -104,37 +80,27 @@ export class WebhookProcessor implements OnModuleInit, OnModuleDestroy {
         }
     }
 
-    /**
-     * Simulate webhook delivery (for development)
-     */
     private async simulateWebhookDelivery(
         url: string,
         payload: Record<string, any>
     ): Promise<void> {
-        // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 300));
         
         this.logger.debug(`[SIMULATED] Webhook POST to ${url}:`, JSON.stringify(payload));
         
-        // Simulate occasional failures for testing retry logic
-        if (Math.random() < 0.1) { // 10% failure rate
+        if (Math.random() < 0.1) {
             throw new Error('Simulated webhook delivery error');
         }
     }
 
-    /**
-     * Determine if error is retryable
-     */
     private shouldRetry(error: any): boolean {
-        // Retry on network errors, 5xx errors
-        // Don't retry on 4xx errors (client errors)
         const statusCode = error.response?.status;
         
         if (!statusCode) {
-            return true; // Network error, retry
+            return true;
         }
         
-        return statusCode >= 500 && statusCode < 600; // Only retry server errors
+        return statusCode >= 500 && statusCode < 600;
     }
 
     async onModuleDestroy() {

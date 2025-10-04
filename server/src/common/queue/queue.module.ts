@@ -6,16 +6,17 @@ import { EmailQueueService } from './services/email-queue.service';
 import { WebhookQueueService } from './services/webhook-queue.service';
 
 import { EventSyncProcessor } from './processors/event-sync.processor';
-import { EmailProcessor } from './processors/email.processor';
 import { WebhookProcessor } from './processors/webhook.processor';
 
 import { QueueMonitorController } from './controllers/queue-monitor.controller';
 
 import { EventModule } from '../../modules/event/event.module';
+import { EmailModule } from '../../modules/email/email.module';
+import { EmailProcessor } from './processors/email.processor';
 
 @Global()
 @Module({
-    imports: [ConfigModule, EventModule],
+    imports: [ConfigModule, EventModule, EmailModule],
     providers: [
         EventSyncQueueService,
         EmailQueueService,

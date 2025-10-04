@@ -14,6 +14,7 @@ import { WebhookModule } from './modules/webhook/webhook.module';
 
 import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './modules/auth/auth.module';
+import { EmailModule } from './modules/email/email.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 
 @Module({
@@ -33,6 +34,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
     GoogleModule,
     WebhookModule,
     AuthModule,
+    EmailModule,
   ],
   providers: [
     {

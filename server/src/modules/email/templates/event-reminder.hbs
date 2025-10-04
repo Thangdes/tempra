@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Reminder</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #3b82f6;
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .event-card {
+            background: white;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .event-detail {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>⏰ Event Reminder</h2>
+    </div>
+    <div class="content">
+        <p>Hi there,</p>
+        
+        <p>This is a reminder for your upcoming event:</p>
+        
+        <div class="event-card">
+            <h3>{{title}}</h3>
+            
+            <div class="event-detail">
+                <span class="icon">🗓️</span>
+                <strong>When:</strong> {{formatDate startTime}}
+            </div>
+            
+            {{#if location}}
+            <div class="event-detail">
+                <span class="icon">📍</span>
+                <strong>Where:</strong> {{location}}
+            </div>
+            {{/if}}
+            
+            {{#if description}}
+            <div class="event-detail">
+                <span class="icon">📝</span>
+                <strong>Details:</strong> {{description}}
+            </div>
+            {{/if}}
+        </div>
+        
+        <p style="text-align: center;">
+            <a href="{{eventUrl}}" class="button">View Event</a>
+            <a href="{{calendarUrl}}" class="button" style="background: #6b7280;">Open Calendar</a>
+        </p>
+    </div>
+</body>
+</html>
