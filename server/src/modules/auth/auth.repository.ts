@@ -172,6 +172,22 @@ export class AuthRepository {
       this.logger.error(`Failed to check email existence: ${error.message}`, error.stack);
       throw new DatabaseOperationException('Database error during email check');
     }
+  } 
+
+  async updateResetToken(userId: string, identifier: string, hashedSecret: string, expiresAt: Date) {
+    const query = `
+        UPDATE users 
+        SET reset_token_identifier = $1, reset_token_secret = $2, reset_token_expires_at = $3
+        WHERE id = $4 AND is_active = true
+      `
+    try {
+      
+      await this.databaseService.query(query, [identifier, hashedSecret, expiresAt, userId]);
+      this.logger.log(`Reset token updated for user: ${userId}`);
+    } catch (error) {
+      this.logger.error(`Failed to update reset token: ${error.message}`, error.stack);
+      throw new DatabaseOperationException('Database error during reset token update');
+    }
   }
 
   async usernameExists(username: string): Promise<boolean> {

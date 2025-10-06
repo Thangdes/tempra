@@ -68,6 +68,34 @@ export class AuthController {
     return new SuccessResponseDto('User logged in successfully', result);
   }
 
+  @Post('forget-password')
+  @ApiOperation({
+    summary: 'Forget password',
+    description: 'Send password reset email to user'
+  })
+  @ApiResponse({ status: 200, description: 'User successfully forget password' })
+  async forgetPassword(
+    @Body() loginDto: { email: string },
+  ): Promise<SuccessResponseDto<{ email: string }>> {
+    const result = await this.authService.forgetPassword(loginDto.email);
+    return new SuccessResponseDto('User forget password successfully', result);
+  }
+
+  @Post('reset-password')
+  @ApiOperation({
+    summary: 'Reset password',
+    description: 'Reset user password'
+  })
+  @ApiResponse({ status: 200, description: 'User successfully reset password' })
+  async resetPassword(
+    @Body() identifier: string,
+    @Body() secret: string,
+    @Body() password: string,
+  ): Promise<SuccessResponseDto<{ email: string }>> {
+    const result = await this.authService.resetPassword(identifier, secret, password);
+    return new SuccessResponseDto('User reset password successfully', result);
+  }
+
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ 

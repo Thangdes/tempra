@@ -6,9 +6,7 @@ export class PasswordService {
   private readonly logger = new Logger(PasswordService.name);
   private readonly saltRounds = 10;
 
-  /**
-   * Hash a plain text password
-   */
+
   async hashPassword(password: string): Promise<string> {
     try {
       return await bcrypt.hash(password, this.saltRounds);
@@ -18,9 +16,7 @@ export class PasswordService {
     }
   }
 
-  /**
-   * Compare a plain text password with a hashed password
-   */
+
   async comparePassword(password: string, hashedPassword: string): Promise<boolean> {
     try {
       return await bcrypt.compare(password, hashedPassword);
@@ -30,9 +26,6 @@ export class PasswordService {
     }
   }
 
-  /**
-   * Generate a salt for password hashing
-   */
   async generateSalt(rounds: number = this.saltRounds): Promise<string> {
     try {
       return await bcrypt.genSalt(rounds);
@@ -42,9 +35,6 @@ export class PasswordService {
     }
   }
 
-  /**
-   * Validate password strength
-   */
   validatePasswordStrength(password: string): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 

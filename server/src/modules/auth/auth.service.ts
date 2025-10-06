@@ -19,6 +19,8 @@ import {
 } from './exceptions/auth.exceptions';
 import { MessageService } from '../../common/message/message.service';
 import { ConfigService } from '../../config/config.service';
+import { randomBytes } from 'crypto';
+import { EmailService } from '../email/services/email.service';
 
 @Injectable()
 export class AuthService {
@@ -31,6 +33,7 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly passwordService: PasswordService,
     private readonly userValidationService: UserValidationService,
+    private readonly emailService: EmailService
   ) {}
 
   async register(registerDto: RegisterDto): Promise<AuthResponse> {
@@ -119,6 +122,74 @@ export class AuthService {
     }
   }
 
+  async forgetPassword(email: string) {
+    try {
+      const user = await this.userValidationService.findUserByEmail(email);
+      if (!user) {
+        this.logger.warn(`Forget password attempt with non-existent email: ${email}`);
+        throw new InvalidCredentialsException();
+      }
+      
+      const resetToken = randomBytes(32).toString('hex');
+      const identifier = resetToken.slice(0, 8); 
+      const secret = resetToken.slice(8); 
+    
+      const hashedSecret = await this.passwordService.hashPassword(secret);
+
+      await this.authRepository.updateResetToken(user.id, identifier, hashedSecret, new Date(Date.now() + 15 * 60 * 1000));
+
+      await this.emailService.sendPasswordResetEmail(user.id, user.email, user.username, identifier, secret);
+      this.logger.log(`Password reset email sent to: ${user.email}`);
+
+      this.logger.log(`User forget password successfully: ${user.email}`);
+
+      return {
+        email: user.email,
+      };
+      
+    } catch (error) {
+      if (error instanceof InvalidCredentialsException) {
+        throw error;
+      }
+      
+      this.logger.error('Forget password failed:', error);
+      throw new AuthenticationFailedException(this.messageService.get('auth.forget_password_failed'));
+    }
+  }
+
+  async resetPassword(identifier: string, secret: string, password: string) {
+    try {
+      const user = await this.userValidationService.findUserByResetToken(identifier);
+      if (!user) {
+        this.logger.warn(`Reset password attempt with non-existent reset token: ${identifier}`);
+        throw new InvalidCredentialsException();
+      }
+      
+      const hashedPassword = await this.passwordService.hashPassword(secret);
+      const isPasswordValid = await this.passwordService.comparePassword(
+        secret,
+        user.reset_token_secret,
+      );
+      if (!isPasswordValid) {
+        this.logger.warn(`Invalid password attempt for reset token: ${identifier}`);
+        throw new InvalidCredentialsException();
+      }
+      await this.authRepository.updatePassword(user.id, hashedPassword);
+      this.logger.log(`User reset password successfully: ${user.email}`);
+      return {
+        email: user.email,
+      };
+      
+    } catch (error) {
+      if (error instanceof InvalidCredentialsException) {
+        throw error;
+      }
+      
+      this.logger.error('Reset password failed:', error);
+      throw new AuthenticationFailedException(this.messageService.get('auth.reset_password_failed'));
+    }
+  }
+
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userValidationService.findUserByEmail(email);
     if (user && (await this.passwordService.comparePassword(password, user.password_hash))) {
@@ -127,6 +198,7 @@ export class AuthService {
     }
     return null;
   }
+
 
 
   private async generateTokens(user: any): Promise<AuthTokens> {

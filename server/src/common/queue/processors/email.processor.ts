@@ -221,7 +221,8 @@ export class EmailProcessor implements OnModuleInit, OnModuleDestroy {
         userId,
         to,
         (context?.userName as string) || 'User',
-        (context?.resetToken as string) || '',
+        (context?.identifier as string) || '',
+        (context?.secret as string) || '',
       );
 
       await job.updateProgress(100);

@@ -139,6 +139,23 @@ export class UserValidationService {
         }
     }
 
+    async findUserByResetToken(identifier: string): Promise<any | null> {
+        const query = `
+            SELECT * FROM users
+            WHEN reset_token_identifier = $1
+                AND reset_token_expires > NOW()
+                AND is_active = true
+            LIMIT 1
+        `
+        const params = [identifier];
+        try {
+            const result = await this.databaseService.query(query, params);
+            return result.rows[0] || null;
+        } catch (error) {
+            throw new Error(this.messageService.get('error.internal_server_error'));
+        }
+    }
+
     async findUserByUsername(username: string): Promise<any | null> {
         const query = 'SELECT * FROM users WHERE username = $1 AND is_active = true';
         const params = [username];

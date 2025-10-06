@@ -10,6 +10,7 @@ import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { PaginationService } from './services/pagination.service';
 import { UserValidationService } from './services/user-validation.service';
 import { CalendarValidationService } from './services/calendar-validation.service';
+import { EventValidationService } from './services/event-validation.service';
 import { RecurringEventsService } from './services/recurring-events.service';
 import { PasswordService } from './services/password.service';
 import { SyncErrorRecoveryService } from './services/sync-error-recovery.service';
@@ -22,6 +23,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
     PaginationService,
     UserValidationService,
     CalendarValidationService,
+    EventValidationService,
     RecurringEventsService,
     PasswordService,
     SyncErrorRecoveryService,
@@ -55,6 +57,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
     PaginationService, 
     UserValidationService, 
     CalendarValidationService, 
+    EventValidationService,
     RecurringEventsService, 
     PasswordService, 
     SyncErrorRecoveryService,
