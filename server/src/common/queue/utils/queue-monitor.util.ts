@@ -121,7 +121,7 @@ export class QueueMonitor {
     ): Promise<{ completed: number; failed: number }> {
         const {
             completedAge = 24,
-            failedAge = 168, // 7 days
+            failedAge = 168,
             limit = 1000,
         } = options;
 

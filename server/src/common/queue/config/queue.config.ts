@@ -20,12 +20,12 @@ export const getDefaultQueueConfig = (configService: ConfigService): QueueOption
             delay: 1000, // 1s initial delay
         },
         removeOnComplete: {
-            count: 100, // Keep last 100 completed jobs
-            age: 24 * 3600, // Remove after 24 hours
+            count: 100,
+            age: 24 * 3600,
         },
         removeOnFail: {
-            count: 500, // Keep last 500 failed jobs for debugging
-            age: 7 * 24 * 3600, // Remove after 7 days
+            count: 500,
+            age: 7 * 24 * 3600,
         },
     },
 });

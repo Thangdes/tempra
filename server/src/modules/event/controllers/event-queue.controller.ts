@@ -3,10 +3,6 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { EventSyncQueueService } from '../../../common/queue/services/event-sync-queue.service';
 import { JobPriority } from '../../../common/queue/types/queue.types';
 
-/**
- * Event queue controller
- * Provides endpoints to queue event synchronization jobs
- */
 @ApiTags('Event Queue')
 @Controller('api/events/queue')
 export class EventQueueController {
@@ -14,9 +10,6 @@ export class EventQueueController {
         private readonly eventSyncQueue: EventSyncQueueService,
     ) {}
 
-    /**
-     * Queue event pull from Google Calendar
-     */
     @Post('pull')
     @ApiOperation({ summary: 'Queue event pull from Google Calendar' })
     @ApiResponse({ status: 201, description: 'Job queued successfully' })
@@ -52,9 +45,6 @@ export class EventQueueController {
         };
     }
 
-    /**
-     * Queue event push to Google Calendar
-     */
     @Post('push')
     @ApiOperation({ summary: 'Queue event push to Google Calendar' })
     @ApiResponse({ status: 201, description: 'Job queued successfully' })
@@ -86,9 +76,6 @@ export class EventQueueController {
         };
     }
 
-    /**
-     * Queue batch event sync
-     */
     @Post('batch')
     @ApiOperation({ summary: 'Queue batch event synchronization' })
     @ApiResponse({ status: 201, description: 'Batch job queued successfully' })
@@ -123,9 +110,6 @@ export class EventQueueController {
         };
     }
 
-    /**
-     * Queue full calendar sync
-     */
     @Post('full-sync')
     @ApiOperation({ summary: 'Queue full calendar synchronization' })
     @ApiResponse({ status: 201, description: 'Full sync job queued successfully' })
@@ -152,9 +136,7 @@ export class EventQueueController {
         };
     }
 
-    /**
-     * Get job status
-     */
+
     @Get('jobs/:jobId')
     @ApiOperation({ summary: 'Get job status by ID' })
     @ApiResponse({ status: 200, description: 'Job status retrieved' })
@@ -188,7 +170,6 @@ export class EventQueueController {
         };
     }
 
-    // Helper method
     private mapPriority(priority?: string): JobPriority {
         switch (priority) {
             case 'critical':

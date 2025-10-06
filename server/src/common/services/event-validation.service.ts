@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import { MessageService } from '../message/message.service';
 import { EventValidationException } from '../../modules/event/exceptions/event.exceptions';
+import { BUSINESS_CONSTANTS } from '../constants';
 
 @Injectable()
 export class EventValidationService {
@@ -25,7 +26,7 @@ export class EventValidationService {
         }
 
         const durationMs = endTime.getTime() - startTime.getTime();
-        const maxDurationMs = 24 * 60 * 60 * 1000; 
+        const maxDurationMs = BUSINESS_CONSTANTS.EVENT.MAX_DURATION_MS; 
 
         if (durationMs > maxDurationMs) {
             this.logger.warn(`Event duration ${durationMs}ms exceeds maximum ${maxDurationMs}ms`);

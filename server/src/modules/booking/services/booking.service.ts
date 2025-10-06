@@ -4,6 +4,7 @@ import { BookingRepository } from '../repositories/booking.repository';
 import { DatabaseService } from '../../../database/database.service';
 import { MessageService } from '../../../common/message/message.service';
 import { AvailabilityService } from '../../availability/services/availability.service';
+import { TIME_CONSTANTS } from '../../../common/constants';
 import {
   Booking,
   BookingLink,
@@ -243,7 +244,7 @@ export class BookingService {
       const slotEnd = new Date(slot.end);
 
       const now = new Date();
-      const advanceNoticeMs = bookingLink.advance_notice_hours * 60 * 60 * 1000;
+      const advanceNoticeMs = bookingLink.advance_notice_hours * TIME_CONSTANTS.BOOKING.ADVANCE_NOTICE_MULTIPLIER;
       if (slotStart.getTime() - now.getTime() < advanceNoticeMs) {
         bookingSlots.push({
           start: slotStart,
@@ -254,7 +255,7 @@ export class BookingService {
         continue;
       }
 
-      const bookingWindowMs = bookingLink.booking_window_days * 24 * 60 * 60 * 1000;
+      const bookingWindowMs = bookingLink.booking_window_days * TIME_CONSTANTS.BOOKING.BOOKING_WINDOW_MULTIPLIER;
       if (slotStart.getTime() - now.getTime() > bookingWindowMs) {
         bookingSlots.push({
           start: slotStart,
@@ -320,7 +321,7 @@ export class BookingService {
       throw new BookingPastDateException(message);
     }
 
-    const advanceNoticeMs = bookingLink.advance_notice_hours * 60 * 60 * 1000;
+    const advanceNoticeMs = bookingLink.advance_notice_hours * TIME_CONSTANTS.BOOKING.ADVANCE_NOTICE_MULTIPLIER;
     if (startTime.getTime() - now.getTime() < advanceNoticeMs) {
       const message = this.messageService.get('booking.advance_notice', undefined, {
         hours: bookingLink.advance_notice_hours.toString(),
@@ -328,7 +329,7 @@ export class BookingService {
       throw new BookingAdvanceNoticeException(message);
     }
 
-    const bookingWindowMs = bookingLink.booking_window_days * 24 * 60 * 60 * 1000;
+    const bookingWindowMs = bookingLink.booking_window_days * TIME_CONSTANTS.BOOKING.BOOKING_WINDOW_MULTIPLIER;
     if (startTime.getTime() - now.getTime() > bookingWindowMs) {
       const message = this.messageService.get('booking.outside_window', undefined, {
         days: bookingLink.booking_window_days.toString(),

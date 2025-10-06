@@ -5,6 +5,7 @@ import { BaseQueueService } from './base-queue.service';
 import { EventSyncJobData, BatchEventSyncJobData, QueueJobOptions } from '../interfaces/queue-job.interface';
 import { QueueName, JobPriority } from '../types/queue.types';
 import { EVENT_SYNC_QUEUE_CONFIG } from '../config/queue.config';
+import { TIME_CONSTANTS } from '../../constants';
 
 @Injectable()
 export class EventSyncQueueService 
@@ -115,8 +116,8 @@ export class EventSyncQueueService
             syncType: 'full',
             createdAt: new Date(),
             options: {
-                timeMin: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000), // 1 year ago
-                timeMax: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year ahead
+                timeMin: new Date(Date.now() - TIME_CONSTANTS.EVENT_SYNC.FULL_SYNC_PAST_RANGE),
+                timeMax: new Date(Date.now() + TIME_CONSTANTS.EVENT_SYNC.FULL_SYNC_FUTURE_RANGE),
                 maxResults: 2500,
             },
         };
@@ -143,8 +144,8 @@ export class EventSyncQueueService
             syncType: 'pull',
             createdAt: new Date(),
             options: {
-                timeMin: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // Last 7 days
-                timeMax: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Next 30 days
+                timeMin: new Date(Date.now() - TIME_CONSTANTS.EVENT_SYNC.BATCH_SYNC_PAST_RANGE),
+                timeMax: new Date(Date.now() + TIME_CONSTANTS.EVENT_SYNC.BATCH_SYNC_FUTURE_RANGE),
                 maxResults: 500,
             },
         };

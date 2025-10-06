@@ -3,6 +3,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { WebhookService } from './webhook.service';
 import { WebhookChannelRepository } from '../repositories/webhook-channel.repository';
 import { GoogleAuthService } from '../../google/services/google-auth.service';
+import { TIME_CONSTANTS } from '../../../common/constants';
 
 @Injectable()
 export class WebhookSchedulerService {
@@ -26,8 +27,7 @@ export class WebhookSchedulerService {
         this.logger.log('Starting webhook auto-renewal process...');
 
         try {
-            // Find channels expiring within 24 hours
-            const expiringChannels = await this.webhookChannelRepo.findExpiringWithin(24); // 24 hours
+            const expiringChannels = await this.webhookChannelRepo.findExpiringWithin(24);
             
             this.logger.log(`Found ${expiringChannels.length} webhooks expiring within 24 hours`);
 
@@ -123,10 +123,9 @@ export class WebhookSchedulerService {
             // First, stop the existing webhook
             await this.webhookService.stopWatch(channel.user_id, channel.channel_id);
 
-            // Create a new webhook for the same calendar
             await this.webhookService.watchCalendar(channel.user_id, {
                 calendar_id: channel.calendar_id,
-                expiration: 7 * 24 * 60 * 60 * 1000, // 7 days
+                expiration: TIME_CONSTANTS.WEBHOOK.DEFAULT_EXPIRY,
                 token: `renewed-${channel.user_id}-${Date.now()}`
             });
 

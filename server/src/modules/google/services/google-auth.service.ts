@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { google, Auth } from 'googleapis';
 import { UserCredentialsRepository } from '../repositories/user-credentials.repository';
+import { TIME_CONSTANTS } from '../../../common/constants';
 
 @Injectable()
 export class GoogleAuthService {
@@ -45,7 +46,7 @@ export class GoogleAuthService {
 
             const expiresAt = tokens.expiry_date 
                 ? new Date(tokens.expiry_date) 
-                : new Date(Date.now() + 3600 * 1000);
+                : new Date(Date.now() + TIME_CONSTANTS.GOOGLE.TOKEN_DEFAULT_EXPIRY);
 
             await this.credentialsRepo.upsert({
                 user_id: userId,
@@ -92,7 +93,7 @@ export class GoogleAuthService {
 
             const expiresAt = newCredentials.expiry_date
                 ? new Date(newCredentials.expiry_date)
-                : new Date(Date.now() + 3600 * 1000);
+                : new Date(Date.now() + TIME_CONSTANTS.GOOGLE.TOKEN_DEFAULT_EXPIRY);
 
             await this.credentialsRepo.update(userId, 'google', {
                 access_token: newCredentials.access_token,

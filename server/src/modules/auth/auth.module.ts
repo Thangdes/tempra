@@ -10,11 +10,13 @@ import { JwtCookieStrategy } from './strategies/jwt-cookie.strategy';
 import { ConfigModule } from '../../config/config.module';
 import { ConfigService } from '../../config/config.service';
 import { CommonModule } from '../../common/common.module';
+import { EmailModule } from '../email/email.module';
 
 @Module({
   imports: [
     CommonModule,
     ConfigModule,
+    EmailModule,
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],

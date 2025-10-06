@@ -244,9 +244,10 @@ export class EmailService {
     userId: string,
     email: string,
     userName: string,
-    resetToken: string,
+    identifier: string,
+    secret: string,
   ): Promise<SendEmailResult> {
-    const resetUrl = `${this.configService.get<string>('FRONTEND_URL')}/reset-password?token=${resetToken}`;
+    const resetUrl = `${this.configService.get<string>('FRONTEND_URL')}/reset-password?identifier=${identifier}&secret=${secret}`;
 
     return this.sendEmail(
       {
