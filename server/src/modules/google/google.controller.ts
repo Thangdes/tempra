@@ -52,7 +52,7 @@ export class GoogleController {
         const authUrl = this.googleAuthService.getAuthUrl(userId);
         
         return new SuccessResponseDto(
-            'OAuth URL generated',
+            this.messageService.get('google.auth_url_generated'),
             { auth_url: authUrl }
         );
     }

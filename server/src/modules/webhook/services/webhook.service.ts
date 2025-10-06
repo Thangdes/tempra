@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { GoogleAuthService } from '../../google/services/google-auth.service';
 import { GoogleCalendarService } from '../../google/services/google-calendar.service';
 import { WebhookChannelRepository } from '../repositories/webhook-channel.repository';
+import { TIME_CONSTANTS } from '../../../common/constants';
 import { 
     CreateWebhookChannelDto, 
     WebhookChannelResponseDto, 
@@ -57,8 +58,8 @@ export class WebhookService {
             const channelId = `channel-${userId}-${uuidv4()}`;
             const token = dto.token || `token-${userId}-${Date.now()}`;
 
-            const expirationMs = dto.expiration || 7 * 24 * 60 * 60 * 1000; // 7 days
-            const maxExpirationMs = 7 * 24 * 60 * 60 * 1000;
+            const expirationMs = dto.expiration || TIME_CONSTANTS.WEBHOOK.DEFAULT_EXPIRY;
+            const maxExpirationMs = TIME_CONSTANTS.WEBHOOK.MAX_EXPIRY;
             const actualExpirationMs = Math.min(expirationMs, maxExpirationMs);
             const expiration = Date.now() + actualExpirationMs;
 

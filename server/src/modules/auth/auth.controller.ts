@@ -10,6 +10,7 @@ import { AuthResponse } from './interfaces/auth.interface';
 import { Public } from '../../common/decorators/public.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { SuccessResponseDto } from '../../common/dto/base-response.dto';
+import { MessageService } from '../../common/message/message.service';
 
 @ApiTags('Authentication')
 @ApiExtraModels(AuthResponseDto, SuccessResponseDto)
@@ -18,6 +19,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly cookieAuthService: CookieAuthService,
+    private readonly messageService: MessageService,
   ) {}
 
   @Public()
@@ -42,7 +44,7 @@ export class AuthController {
     
     this.cookieAuthService.setAuthCookies(response, result.tokens);
     
-    return new SuccessResponseDto('User registered successfully', result, HttpStatus.CREATED);
+    return new SuccessResponseDto(this.messageService.get('auth.register_success'), result, HttpStatus.CREATED);
   }
 
   @Public()
@@ -65,7 +67,7 @@ export class AuthController {
   ): Promise<SuccessResponseDto<AuthResponse>> {
     const result = await this.authService.login(loginDto);
     this.cookieAuthService.setAuthCookies(response, result.tokens);
-    return new SuccessResponseDto('User logged in successfully', result);
+    return new SuccessResponseDto(this.messageService.get('auth.login_success'), result);
   }
 
   @Post('forget-password')
@@ -78,7 +80,7 @@ export class AuthController {
     @Body() loginDto: { email: string },
   ): Promise<SuccessResponseDto<{ email: string }>> {
     const result = await this.authService.forgetPassword(loginDto.email);
-    return new SuccessResponseDto('User forget password successfully', result);
+    return new SuccessResponseDto(this.messageService.get('auth.forget_password_success'), result);
   }
 
   @Post('reset-password')
@@ -93,7 +95,7 @@ export class AuthController {
     @Body() password: string,
   ): Promise<SuccessResponseDto<{ email: string }>> {
     const result = await this.authService.resetPassword(identifier, secret, password);
-    return new SuccessResponseDto('User reset password successfully', result);
+    return new SuccessResponseDto(this.messageService.get('auth.reset_password_success'), result);
   }
 
   @Post('logout')
@@ -108,7 +110,7 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ): Promise<SuccessResponseDto<null>> {
     this.cookieAuthService.clearAuthCookies(response);
-    return new SuccessResponseDto('User logged out successfully', null);
+    return new SuccessResponseDto(this.messageService.get('auth.logout_success'), null);
   }
 
   @Public()
@@ -134,7 +136,7 @@ export class AuthController {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
 
-    return new SuccessResponseDto('Token refreshed successfully', { tokens });
+    return new SuccessResponseDto(this.messageService.get('auth.token_refresh_success'), { tokens });
   }
 
   @Post('me')
@@ -149,6 +151,6 @@ export class AuthController {
     @Req() request: Request,
   ): Promise<SuccessResponseDto<any>> {
     const user = (request as any).user;
-    return new SuccessResponseDto('User profile retrieved successfully', user);
+    return new SuccessResponseDto(this.messageService.get('auth.profile_retrieved'), user);
   }
 }

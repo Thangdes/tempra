@@ -21,6 +21,7 @@ import { MessageService } from '../../common/message/message.service';
 import { ConfigService } from '../../config/config.service';
 import { randomBytes } from 'crypto';
 import { EmailService } from '../email/services/email.service';
+import { TIME_CONSTANTS, SECURITY_CONSTANTS } from '../../common/constants';
 
 @Injectable()
 export class AuthService {
@@ -131,12 +132,12 @@ export class AuthService {
       }
       
       const resetToken = randomBytes(32).toString('hex');
-      const identifier = resetToken.slice(0, 8); 
-      const secret = resetToken.slice(8); 
+      const identifier = resetToken.slice(0, SECURITY_CONSTANTS.TOKEN_LENGTHS.RESET_TOKEN_IDENTIFIER); 
+      const secret = resetToken.slice(SECURITY_CONSTANTS.TOKEN_LENGTHS.RESET_TOKEN_IDENTIFIER); 
     
       const hashedSecret = await this.passwordService.hashPassword(secret);
 
-      await this.authRepository.updateResetToken(user.id, identifier, hashedSecret, new Date(Date.now() + 15 * 60 * 1000));
+      await this.authRepository.updateResetToken(user.id, identifier, hashedSecret, new Date(Date.now() + TIME_CONSTANTS.AUTH.PASSWORD_RESET_EXPIRY));
 
       await this.emailService.sendPasswordResetEmail(user.id, user.email, user.username, identifier, secret);
       this.logger.log(`Password reset email sent to: ${user.email}`);
@@ -165,7 +166,7 @@ export class AuthService {
         throw new InvalidCredentialsException();
       }
       
-      const hashedPassword = await this.passwordService.hashPassword(secret);
+      const hashedPassword = await this.passwordService.hashPassword(password);
       const isPasswordValid = await this.passwordService.comparePassword(
         secret,
         user.reset_token_secret,

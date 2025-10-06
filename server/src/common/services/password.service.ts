@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { SECURITY_CONSTANTS } from '../constants';
 
 @Injectable()
 export class PasswordService {
   private readonly logger = new Logger(PasswordService.name);
-  private readonly saltRounds = 10;
+  private readonly saltRounds = SECURITY_CONSTANTS.BCRYPT_SALT_ROUNDS;
 
 
   async hashPassword(password: string): Promise<string> {

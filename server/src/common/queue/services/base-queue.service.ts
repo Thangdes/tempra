@@ -3,6 +3,7 @@ import { Queue, Job, JobsOptions } from 'bullmq';
 import { ConfigService } from '@nestjs/config';
 import { QueueJobOptions } from '../interfaces/queue-job.interface';
 import { QueueName, JobStatus } from '../types/queue.types';
+import { TIME_CONSTANTS } from '../../constants';
 
 @Injectable()
 export abstract class BaseQueueService<T = any> implements OnModuleDestroy {
@@ -155,7 +156,7 @@ export abstract class BaseQueueService<T = any> implements OnModuleDestroy {
     }
 
     async clean(
-        grace: number = 24 * 3600 * 1000, // 24 hours
+        grace: number = TIME_CONSTANTS.DATABASE.CLEANUP_OLD_LOGS,
         limit = 1000,
         status: 'completed' | 'failed' = 'completed'
     ): Promise<string[]> {

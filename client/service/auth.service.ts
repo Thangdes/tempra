@@ -62,7 +62,6 @@ export const checkAuthStatus = async (): Promise<boolean> => {
   }
 };
 
-// Legacy object export for backward compatibility
 export const authService = {
   register,
   login,

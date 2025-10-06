@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { AvailabilityRepository } from '../repositories/availability.repository';
 import { DatabaseService } from '../../../database/database.service';
 import { MessageService } from '../../../common/message/message.service';
+import { TIME_CONSTANTS } from '../../../common/constants';
 import {
   Availability,
   DayOfWeek,
@@ -198,8 +199,8 @@ export class AvailabilityService {
       throw new InvalidDateRangeException(message);
     }
 
-    const daysDiff = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-    if (daysDiff > 90) {
+    const daysDiff = Math.ceil((endDate.getTime() - startDate.getTime()) / TIME_CONSTANTS.BOOKING.MILLISECONDS_PER_DAY);
+    if (daysDiff > TIME_CONSTANTS.BOOKING.MAX_DATE_RANGE_DAYS) {
       const message = this.messageService.get('availability.invalid_date_range');
       throw new InvalidDateRangeException(message);
     }

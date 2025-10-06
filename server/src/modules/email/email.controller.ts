@@ -20,13 +20,19 @@ import { EmailService } from './services/email.service';
 import { SendEmailDto, EmailLogResponseDto } from './dto/send-email.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { SuccessResponseDto, PaginatedResponseDto } from '../../common/dto/base-response.dto';
+import { MessageService } from '../../common/message/message.service';
+import { TIME_CONSTANTS } from '../../common/constants';
 
 @ApiTags('Email')
 @ApiBearerAuth()
 @Controller('email')
 @UseGuards(JwtAuthGuard)
 export class EmailController {
-  constructor(private readonly emailService: EmailService) {}
+  constructor(
+    private readonly emailService: EmailService,
+    private readonly messageService: MessageService,
+  ) {}
 
   @Post('send')
   @HttpCode(HttpStatus.OK)
@@ -53,7 +59,7 @@ export class EmailController {
   async sendEmail(
     @Body() sendEmailDto: SendEmailDto,
     @CurrentUser('id') userId: string,
-  ) {
+  ): Promise<SuccessResponseDto> {
     const result = await this.emailService.sendEmail(
       {
         to: sendEmailDto.to,
@@ -69,20 +75,15 @@ export class EmailController {
     );
 
     if (result.success) {
-      return {
-        success: true,
-        message: 'Email sent successfully',
-        data: {
+      return new SuccessResponseDto(
+        this.messageService.get('email.sent_successfully'),
+        {
           messageId: result.messageId,
           logId: result.logId,
-        },
-      };
+        }
+      );
     } else {
-      return {
-        success: false,
-        message: 'Failed to send email',
-        error: result.error,
-      };
+      throw new Error(result.error || this.messageService.get('email.send_failed'));
     }
   }
 
@@ -102,23 +103,23 @@ export class EmailController {
     @CurrentUser('id') userId: string,
     @Query('limit') limit = 50,
     @Query('offset') offset = 0,
-  ) {
+  ): Promise<PaginatedResponseDto> {
     const logs = await this.emailService.getEmailLogs(
       userId,
       Number(limit),
       Number(offset),
     );
 
-    return {
-      success: true,
-      message: 'Email logs retrieved successfully',
-      data: logs,
-      meta: {
+    return new PaginatedResponseDto(
+      this.messageService.get('email.logs_retrieved'),
+      logs,
+      {
+        page: Math.floor(Number(offset) / Number(limit)) + 1,
         limit: Number(limit),
-        offset: Number(offset),
         total: logs.length,
-      },
-    };
+        totalPages: Math.ceil(logs.length / Number(limit)),
+      }
+    );
   }
 
   @Get('logs/:id')
@@ -135,21 +136,21 @@ export class EmailController {
   async getEmailLogById(
     @Param('id') logId: string,
     @CurrentUser('id') userId: string,
-  ) {
+  ): Promise<SuccessResponseDto> {
     const log = await this.emailService.getEmailLogById(logId, userId);
 
     if (!log) {
-      return {
-        success: false,
-        message: 'Email log not found',
-      };
+      return new SuccessResponseDto(
+        this.messageService.get('email.log_not_found'),
+        null,
+        HttpStatus.NOT_FOUND
+      );
     }
 
-    return {
-      success: true,
-      message: 'Email log retrieved successfully',
-      data: log,
-    };
+    return new SuccessResponseDto(
+      this.messageService.get('email.log_retrieved'),
+      log
+    );
   }
 
   @Post('test/welcome')
@@ -163,20 +164,19 @@ export class EmailController {
     @CurrentUser('id') userId: string,
     @CurrentUser('email') email: string,
     @CurrentUser('username') username: string,
-  ) {
+  ): Promise<SuccessResponseDto> {
     const result = await this.emailService.sendWelcomeEmail(
       userId,
       email,
       username || 'User',
     );
 
-    return {
-      success: result.success,
-      message: result.success 
-        ? 'Test welcome email sent successfully' 
-        : 'Failed to send test email',
-      data: result,
-    };
+    return new SuccessResponseDto(
+      result.success 
+        ? this.messageService.get('email.test_welcome_sent') 
+        : this.messageService.get('email.test_send_failed'),
+      result
+    );
   }
 
   @Post('test/reminder')
@@ -189,24 +189,23 @@ export class EmailController {
   async sendTestReminderEmail(
     @CurrentUser('id') userId: string,
     @CurrentUser('email') email: string,
-  ) {
+  ): Promise<SuccessResponseDto> {
     const result = await this.emailService.sendEventReminderEmail(
       userId,
       email,
       {
         title: 'Test Event - Team Meeting',
-        startTime: new Date(Date.now() + 60 * 60 * 1000), // 1 hour from now
+        startTime: new Date(Date.now() + TIME_CONSTANTS.EMAIL.TEST_REMINDER_DELAY),
         location: 'Conference Room A',
         description: 'This is a test event reminder',
       },
     );
 
-    return {
-      success: result.success,
-      message: result.success 
-        ? 'Test reminder email sent successfully' 
-        : 'Failed to send test email',
-      data: result,
-    };
+    return new SuccessResponseDto(
+      result.success 
+        ? this.messageService.get('email.test_reminder_sent') 
+        : this.messageService.get('email.test_send_failed'),
+      result
+    );
   }
 }
